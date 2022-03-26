@@ -1,0 +1,10 @@
+.profile__addbtn-image{
+    width: 22px;
+    height: 22px;
+}
+@media screen and (max-width: calc(282px*3 + 17px*2)) {
+  .profile__addbtn-image {
+    width: 16px;
+    height: 16px;
+  }
+}

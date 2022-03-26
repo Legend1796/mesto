@@ -1,0 +1,20 @@
+.profile__editbtn{
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+  margin-left: 18px;
+  background-image: url("../../../images/Edit\ Button.svg");
+  background-color: black;
+  border: none;
+}
+.profile__editbtn:hover{
+  opacity: .6;
+  cursor: pointer;
+}
+@media screen and (max-width: calc(282px*3 + 17px*2)) {
+  .profile__job {
+    width: 18px;
+    height: 18px;
+  }
+}

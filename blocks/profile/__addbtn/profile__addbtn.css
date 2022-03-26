@@ -1,0 +1,20 @@
+.profile__addbtn{
+  margin: 0;
+  margin-right: 0;
+  width: 150px;
+  height: 50px;
+  background-color: black;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile__addbtn:hover{
+  opacity: .6;
+  cursor: pointer;
+}
+@media screen and (max-width: calc(282px*2 + 17px)) {
+  .profile__addbtn {
+    width: 282px;
+  }
+}
