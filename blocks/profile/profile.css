@@ -1,0 +1,17 @@
+.profile{
+  display: flex;
+  justify-content: space-between;
+  max-width: 880px;
+  margin: 0 auto;
+  border: 1px solid yellow;
+}
+@media screen and (max-width: calc(282px*3 + 17px*2)) {
+  .profile {
+    width: calc(282px*2 + 17px);
+  }
+}
+@media screen and (max-width: calc(282px*2 + 17px)) {
+  .profile {
+    width: 282px;
+  }
+}
