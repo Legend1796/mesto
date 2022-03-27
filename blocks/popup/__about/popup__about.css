@@ -1,13 +1,14 @@
-.ui__jobfield{
+.popup__about{
   width: 358px;
   margin: 30px auto 13px;
   margin-left: 36px;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+  border: none;
 }
 @media screen and (max-width: calc(282px*2 + 17px)) {
-  .ui__jobfield {
+  .popup__about {
     width: 238px;
   }
 }

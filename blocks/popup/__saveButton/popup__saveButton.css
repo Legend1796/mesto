@@ -1,4 +1,4 @@
-.ui__save{
+.popup__saveButton{
   border-radius: 2px;
   background-color: black;
   width: 358px;
@@ -7,12 +7,12 @@
   margin-top: 48px;
   border: none;
 }
-.ui__save:hover{
+.popup__saveButton:hover{
   opacity: .8;
   cursor: pointer;
 }
 @media screen and (max-width: calc(282px*2 + 17px)) {
-  .ui__save {
+  .popup__saveButton {
     width: 238px;
     margin-left: 22px;
   }

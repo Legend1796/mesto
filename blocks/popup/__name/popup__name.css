@@ -1,12 +1,14 @@
-.ui__namefield{
+.popup__name{
   width: 358px;
   margin: 0 auto 13px;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+  margin-left: 36px;
+  border: none;
 }
 @media screen and (max-width: calc(282px*2 + 17px)) {
-  .ui__namefield {
+  .popup__name {
     width: 238px;
   }
 }

@@ -30,12 +30,26 @@
         <img class="profile__addbtn-image" src="./images/Vector.svg" alt="Кнопка добавления нового профиля">
       </button>
     </div>
+    <div class="popup">
+      <div class="popup__overlay"></div>
+      <div class="popup__container">
+        <h2 class="popup__text">Редактировать профиль</h2>
+        <input class="popup__name" type="text">
+        <div class="popup__border-line"></div>
+        <input class="popup__about" type="text">
+        <div class="popup__border-line"></div>
+        <button class="popup__saveButton">
+          <p class="popup__savetext">Сохранить</p>
+        </button>
+        <button class="popup__close"></button>
+      </div>
+    </div>
     <section>
       <ul class="elements">
         <li class="element">
           <img class="element__image" src="./images/kaarachayevsk.png" alt="Фото Карачаевска">
           <div class="element__rectangle">
-            <h3 class="element__title">Карачаевск</h3>
+            <h3 class="element__title">Карачаево-Черкесия</h3>
             <div class="element__like element__like_active">
               <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path class="element__svg-image"
@@ -85,27 +99,6 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
-
-
-
-
-    <div class="ui">
-      <div class="ui__overlay"></div>
-      <div class="ui__form">
-        <h2 class="ui__redact">Редактировать профиль</h2>
-        <p class="ui__namefield">Жак-Ив Кусто</p>
-        <div class="ui__border-line"></div>
-        <p class="ui__jobfield">Исследователь океана</p>
-        <div class="ui__border-line"></div>
-        <button class="ui__save">
-          <p class="ui__savetext">Сохранить</p>
-        </button>
-        <button class="ui__close"></button>
-      </div>
-    </div>
-
-
-
     <script src="./scripts/script.js">
     </script>
   </div>
