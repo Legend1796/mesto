@@ -1,0 +1,24 @@
+.ui__close{
+  background-image: url("../../../images/Close\ Icon.png");
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  background-color: black;
+  z-index: 2;
+  border: none;
+}
+.ui__close:hover{
+  opacity: .6;
+  cursor: pointer;
+}
+@media screen and (max-width: calc(282px*2 + 17px)) {
+  .ui__close {
+    width: 20px;
+    height: 20px;
+    right: 0;
+    top: -26px;
+    background-size: contain;
+  }
+}

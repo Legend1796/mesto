@@ -10,7 +10,7 @@
   font-style: normal;
   min-width: 320px;
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: calc(282px*2 + 17px)) {
   .page {
     padding-top: 28px;
     padding-bottom: 36px;

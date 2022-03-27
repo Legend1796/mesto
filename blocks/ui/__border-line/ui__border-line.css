@@ -1,0 +1,11 @@
+.ui__border-line{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  height: 0;
+  width: 358px;
+  margin: 0 auto 0;
+}
+@media screen and (max-width: calc(282px*2 + 17px)) {
+  .ui__border-line {
+    width: 238px;
+  }
+}
