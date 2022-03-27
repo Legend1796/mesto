@@ -5,6 +5,7 @@
   height: 50px;
   margin-left: 36px;
   margin-top: 48px;
+  border: none;
 }
 .ui__save:hover{
   opacity: .8;
