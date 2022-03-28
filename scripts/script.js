@@ -13,9 +13,9 @@ function addText() {
 function saveChanges() {
   username.textContent = nameInput.value;
   about.textContent = jobInput.value;
-  closePopup();
   username.value = '';
   about.value = '';
+  closePopup();
 }
 function formSubmitHandler(evt) {
   evt.preventDefault();
