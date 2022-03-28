@@ -5,6 +5,9 @@
   height: 50px;
   margin-left: 36px;
   margin-top: 48px;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFFFFF;
   border: none;
 }
 .popup__saveButton:hover{
