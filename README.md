@@ -10,4 +10,4 @@
 **Планы**
 Планируется создать добавление нового профиля и систему лайков...
 
-* Ссылка проекта на GitHub https://legend1796.github.io/russian-travel/
+* Ссылка проекта на GitHub  https://legend1796.github.io/mesto/
