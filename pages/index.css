@@ -11,7 +11,6 @@
 @import url(../blocks/element/__image/element__image.css);
 @import url(../blocks/element/__title/element__title.css);
 @import url(../blocks/element/__like/element__like.css);
-@import url(../blocks/element/__like/_active/element__like_active.css);
 @import url(../blocks/element/__svg-image/element__svg-image.css);
 @import url(../blocks/element/__rectangle/element__rectangle.css);
 @import url(../blocks/profile/profile.css);
