@@ -7,10 +7,9 @@
   background-color: #000000;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-style: normal;
   min-width: 320px;
 }
-@media screen and (max-width: calc(282px*2 + 17px)) {
+@media screen and (max-width: calc(282px*2 + 17px + 2px)) {
   .page {
     padding-top: 28px;
     padding-bottom: 36px;

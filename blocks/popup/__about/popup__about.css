@@ -1,13 +1,14 @@
-.popup__about{
+.popup__about {
   width: 358px;
-  margin: 30px auto 13px;
+  margin: 30px auto 0;
   margin-left: 36px;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
-@media screen and (max-width: calc(282px*2 + 17px)) {
+@media screen and (max-width: calc(282px*2 + 17px + 2px)) {
   .popup__about {
     width: 238px;
   }

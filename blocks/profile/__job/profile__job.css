@@ -1,17 +1,21 @@
-.profile__job{
+.profile__job {
   font-size: 18px;
   line-height: 22px;
   margin: 0;
   margin-top: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 500px;
 }
-@media screen and (max-width: calc(282px*3 + 17px*2)) {
+@media screen and (max-width: calc(282px*3 + 17px*2 + 2px)) {
   .profile__job {
     font-size: 14px;
     line-height: 17px;
-    min-width: 200px;
+    max-width: 300px;
   }
 }
-@media screen and (max-width: calc(282px*2 + 17px)) {
+@media screen and (max-width: calc(282px*2 + 17px + 2px)) {
   .profile__job {
     text-align: center;
     width: 282px;

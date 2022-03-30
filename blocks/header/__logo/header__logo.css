@@ -1,15 +1,15 @@
-.header__logo{
+.header__logo {
   width: 142px;
   height: 33px;
   margin: 0;
   margin-bottom: 41px;
 }
-@media screen and (max-width: calc(880px + 27px)) {
+@media screen and (max-width: calc(880px + 27px + 2px)) {
   .header__logo {
     margin-left: 27px;
   }
 }
-@media screen and (max-width: calc(282px*2 + 17px)) {
+@media screen and (max-width: calc(282px*2 + 17px + 2px)) {
   .header__logo {
     width: 104px;
     height: 25px;

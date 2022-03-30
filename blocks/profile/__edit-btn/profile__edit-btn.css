@@ -1,4 +1,4 @@
-.profile__editbtn{
+.profile__edit-btn {
   width: 24px;
   height: 24px;
   margin: 0;
@@ -7,14 +7,16 @@
   background-image: url("../../../images/Edit\ Button.svg");
   background-color: black;
   border: none;
+  background-size: cover;
 }
-.profile__editbtn:hover{
+.profile__edit-btn:hover {
   opacity: .6;
   cursor: pointer;
 }
-@media screen and (max-width: calc(282px*3 + 17px*2)) {
-  .profile__job {
+@media screen and (max-width: calc(282px*3 + 17px*2 + 2px)) {
+  .profile__edit-btn {
     width: 18px;
     height: 18px;
+    margin-left: 10px;
   }
 }
