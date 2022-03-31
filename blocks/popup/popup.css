@@ -2,7 +2,3 @@
   display: none;
   position: fixed;
 }
-/* 
-Замечание по позиционированию: popup__container cпозиционирован посередине сеткой, 
-используя align-items и justify-content у родительского класса popup_opened.
-*/

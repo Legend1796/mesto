@@ -11,11 +11,13 @@
   color: #FFFFFF;
   border: none;
 }
+
 .popup__save-Button:hover {
   opacity: .8;
   cursor: pointer;
 }
-@media screen and (max-width: calc(282px*2 + 17px + 2px)) {
+
+@media screen and (max-width: 605px) {
   .popup__save-Button {
     width: 238px;
     margin-left: 22px;

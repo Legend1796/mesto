@@ -9,11 +9,13 @@
   border: none;
   background-size: cover;
 }
+
 .profile__edit-btn:hover {
   opacity: .6;
   cursor: pointer;
 }
-@media screen and (max-width: calc(282px*3 + 17px*2 + 2px)) {
+
+@media screen and (max-width: 900px) {
   .profile__edit-btn {
     width: 18px;
     height: 18px;

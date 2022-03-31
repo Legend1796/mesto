@@ -4,12 +4,14 @@
   margin: 0;
   margin-bottom: 41px;
 }
-@media screen and (max-width: calc(880px + 27px + 2px)) {
+
+@media screen and (max-width: 900px) {
   .header__logo {
     margin-left: 27px;
   }
 }
-@media screen and (max-width: calc(282px*2 + 17px + 2px)) {
+
+@media screen and (max-width: 605px) {
   .header__logo {
     width: 104px;
     height: 25px;

@@ -9,7 +9,8 @@
   -moz-osx-font-smoothing: grayscale;
   min-width: 320px;
 }
-@media screen and (max-width: calc(282px*2 + 17px + 2px)) {
+
+@media screen and (max-width: 605px) {
   .page {
     padding-top: 28px;
     padding-bottom: 36px;

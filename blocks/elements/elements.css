@@ -9,12 +9,14 @@
   grid-template-rows: repeat(2, 1fr);
   justify-content: center;
 }
-@media screen and (max-width: calc(282px*3 + 17px*2 + 2px)) {
+
+@media screen and (max-width: 900px) {
   .elements {
     grid-template-columns: repeat(2, 282px);
   }
 }
-@media screen and (max-width: calc(282px*2 + 17px + 2px)) {
+
+@media screen and (max-width: 605px) {
   .elements {
     grid-template-columns: repeat(1, 282px);
   }

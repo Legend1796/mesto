@@ -1,9 +1,10 @@
 .header {
   max-width: 880px;
   margin: 0 auto;
-  border-bottom: 1px hsla(0, 0%, 33%, 0.7) solid;
+  border-bottom: 1px hsla(33%, 33%, 33%, 0.7) solid;
 }
-@media screen and (max-width: calc(282px*2 + 17px + 2px)) {
+
+@media screen and (max-width: 605px) {
   .header {
     width: 100%;
   }

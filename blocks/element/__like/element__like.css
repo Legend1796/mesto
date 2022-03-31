@@ -4,7 +4,9 @@
   margin: 0;
   background-image: url("../../../images/like.svg");
   border: none;
+  background-color: white;
 }
+
 .element__like:hover {
   opacity: .5;
   cursor: pointer;

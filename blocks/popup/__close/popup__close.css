@@ -9,11 +9,13 @@
   z-index: 2;
   border: none;
 }
+
 .popup__close:hover {
   opacity: .6;
   cursor: pointer;
 }
-@media screen and (max-width: calc(282px*2 + 17px + 2px)) {
+
+@media screen and (max-width: 605px) {
   .popup__close {
     width: 20px;
     height: 20px;

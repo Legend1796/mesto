@@ -9,13 +9,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url("../../../images/Vector.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22px;
 }
+
 .profile__add-btn:hover {
   opacity: .6;
   cursor: pointer;
 }
-@media screen and (max-width: calc(282px*2 + 17px + 2px)) {
+
+@media screen and (max-width: 605px) {
   .profile__add-btn {
     width: 282px;
+    background-size: 16px;
   }
 }

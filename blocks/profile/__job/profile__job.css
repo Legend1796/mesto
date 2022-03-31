@@ -8,14 +8,16 @@
   overflow: hidden;
   max-width: 500px;
 }
-@media screen and (max-width: calc(282px*3 + 17px*2 + 2px)) {
+
+@media screen and (max-width: 900px) {
   .profile__job {
     font-size: 14px;
     line-height: 17px;
     max-width: 300px;
   }
 }
-@media screen and (max-width: calc(282px*2 + 17px + 2px)) {
+
+@media screen and (max-width: 605px) {
   .profile__job {
     text-align: center;
     width: 282px;
