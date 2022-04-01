@@ -1,6 +1,5 @@
 .profile__name-edit-btn {
   display: flex;
-  flex-direction: row;
   align-items: center;
   margin: auto;
 }

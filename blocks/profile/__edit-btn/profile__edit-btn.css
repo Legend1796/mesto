@@ -8,9 +8,11 @@
   background-color: black;
   border: none;
   background-size: cover;
+  opacity: 1;
 }
 
 .profile__edit-btn:hover {
+  transition: opacity .2s linear;
   opacity: .6;
   cursor: pointer;
 }

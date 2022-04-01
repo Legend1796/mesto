@@ -13,9 +13,11 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 22px;
+  opacity: 1;
 }
 
 .profile__add-btn:hover {
+  transition: opacity .2s linear;
   opacity: .6;
   cursor: pointer;
 }
