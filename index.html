@@ -14,82 +14,85 @@
     <header class="header">
       <img class="header__logo" src="./images/logo.svg" alt="Логотип сайта">
     </header>
-    <div class="profile">
-      <div class="profile__info">
-        <img class="profile__avatar" src="./images/avatar.jpg" alt="Логотип сайта">
-        <div class="profile__block">
-          <div class="profile__name-edit-btn">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit-btn" type="button"></button>
+    <main>
+      <section class="profile">
+        <div class="profile__info">
+          <img class="profile__avatar" src="./images/avatar.jpg" alt="Логотип сайта">
+          <div class="profile__block">
+            <div class="profile__name-edit">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button class="profile__edit-btn" type="button" aria-label="Редактировать профиль"></button>
+            </div>
+            <p class="profile__job">Исследователь океана</p>
           </div>
-          <h2 class="profile__job">Исследователь океана</h2>
-        </div>
 
-      </div>
-      <button class="profile__add-btn" type="button"></button>
-    </div>
+        </div>
+        <button class="profile__add-btn" type="button" aria-label="Добавить новый профиль"></button>
+      </section>
+
+      <section>
+        <ul class="elements">
+          <li class="element">
+            <img class="element__image" src="./images/kaarachayevsk.png" alt="Фото Карачаевска">
+            <div class="element__rectangle">
+              <h3 class="element__title">Карачаево-Черкесия</h3>
+              <button class="element__like" type="button" aria-label="В избранное"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img class="element__image" src="./images/elbrus.png" alt="Фото Горы Эльбрус">
+            <div class="element__rectangle">
+              <h3 class="element__title">Гора Эльбрус</h3>
+              <button class="element__like" type="button" aria-label="В избранное"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img class="element__image" src="./images/dombai.png" alt="Фото Домбая">
+            <div class="element__rectangle">
+              <h3 class="element__title">Домбай</h3>
+              <button class="element__like" type="button" aria-label="В избранное"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img class="element__image" src="./images/klg.png" alt="Фото Домбая">
+            <div class="element__rectangle">
+              <h3 class="element__title">Калининград</h3>
+              <button class="element__like" type="button" aria-label="В избранное"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img class="element__image" src="./images/spb.png" alt="Фото Домбая">
+            <div class="element__rectangle">
+              <h3 class="element__title">Санкт-Петербург</h3>
+              <button class="element__like" type="button" aria-label="В избранное"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img class="element__image" src="./images/vdk.png" alt="Фото Карачаевска">
+            <div class="element__rectangle">
+              <h3 class="element__title">Владивосток</h3>
+              <button class="element__like" type="button" aria-label="В избранное"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+    </footer>
     <div class="popup">
 
       <div class="popup__container">
         <h2 class="popup__text">Редактировать профиль</h2>
-        <form action="URL" method="get" name="user">
-          <input class="popup__name" type="text" name="name">
-          <input class="popup__about" type="text" name="about">
-          <button class="popup__save-Button" type="submit">Сохранить</button>
-          <button class="popup__close" type="button"></button>
+        <form name="user">
+          <input class="popup__input popup__input_type_name" type="text" name="name">
+          <input class="popup__input popup__input_type_job" type="text" name="about">
+          <button class="popup__save-btn" type="submit">Сохранить</button>
         </form>
+        <button class="popup__close" type="button" aria-label="Закрыть"></button>
       </div>
 
     </div>
-    <section>
-      <ul class="elements">
-        <li class="element">
-          <img class="element__image" src="./images/kaarachayevsk.png" alt="Фото Карачаевска">
-          <div class="element__rectangle">
-            <h3 class="element__title">Карачаево-Черкесия</h3>
-            <button class="element__like" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__image" src="./images/elbrus.png" alt="Фото Горы Эльбрус">
-          <div class="element__rectangle">
-            <h3 class="element__title">Гора Эльбрус</h3>
-            <button class="element__like" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__image" src="./images/dombai.png" alt="Фото Домбая">
-          <div class="element__rectangle">
-            <h3 class="element__title">Домбай</h3>
-            <button class="element__like" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__image" src="./images/klg.png" alt="Фото Домбая">
-          <div class="element__rectangle">
-            <h3 class="element__title">Калининград</h3>
-            <button class="element__like" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__image" src="./images/spb.png" alt="Фото Домбая">
-          <div class="element__rectangle">
-            <h3 class="element__title">Санкт-Петербург</h3>
-            <button class="element__like" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__image" src="./images/vdk.png" alt="Фото Карачаевска">
-          <div class="element__rectangle">
-            <h3 class="element__title">Владивосток</h3>
-            <button class="element__like" type="button"></button>
-          </div>
-        </li>
-      </ul>
-    </section>
-    <footer class="footer">
-      <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
-    </footer>
     <script src="./scripts/script.js">
     </script>
   </div>

@@ -19,12 +19,11 @@
 @import url(../blocks/profile/__edit-btn/profile__edit-btn.css);
 @import url(../blocks/profile/__block/profile__block.css);
 @import url(../blocks/profile/__add-btn/profile__add-btn.css);
-@import url(../blocks/profile/__name-edit-btn/profile__name-edit-btn.css);
+@import url(../blocks/profile/__name-edit/profile__name-edit.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__text/popup__text.css);
-@import url(../blocks/popup/__name/popup__name.css);
-@import url(../blocks/popup/__about/popup__about.css);
-@import url(../blocks/popup/__save-Button/popup__save-Button.css);
+@import url(../blocks/popup/__input/popup__input.css);
+@import url(../blocks/popup/__save-btn/popup__save-btn.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
