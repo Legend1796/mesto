@@ -9,6 +9,7 @@
   border: none;
   background-size: cover;
   opacity: 1;
+  align-self: center;
 }
 
 .profile__edit-btn:hover {

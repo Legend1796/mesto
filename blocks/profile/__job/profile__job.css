@@ -21,5 +21,6 @@
   .profile__job {
     text-align: center;
     width: 282px;
+    margin-top: 7px;
   }
 }
