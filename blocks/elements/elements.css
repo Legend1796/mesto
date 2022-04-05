@@ -21,6 +21,6 @@
     grid-template-columns: repeat(1, 282px);
     row-gap: 20px;
     column-gap: 0px;
-    margin: 28px auto 48px auto;
+    margin: 30px auto 48px auto;
   }
 }
