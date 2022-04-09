@@ -27,7 +27,7 @@
           </div>
 
         </div>
-        <button class="profile__add-btn" type="button" aria-label="Добавить новый профиль"></button>
+        <button class="profile__add-btn" type="button" aria-label="Добавить новое место"></button>
       </section>
 
       <section>
@@ -81,7 +81,6 @@
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
     <div class="popup">
-
       <div class="popup__container">
         <h2 class="popup__text">Редактировать профиль</h2>
         <form name="user">
@@ -91,7 +90,17 @@
         </form>
         <button class="popup__close" type="button" aria-label="Закрыть"></button>
       </div>
-
+    </div>
+    <div class="newSpace newSpace_opened">
+      <div class="newSpace__container">
+        <h2 class="newSpace__text">Новое место</h2>
+        <form name="user">
+          <input class="newSpace__input popup__input_type_name" type="text" name="name">
+          <input class="newSpace__input popup__input_type_job" type="text" name="about">
+          <button class="newSpace__create-btn" type="submit">Создать</button>
+        </form>
+        <button class="newSpace__close" type="button" aria-label="Закрыть"></button>
+      </div>
     </div>
     <script src="./scripts/script.js">
     </script>

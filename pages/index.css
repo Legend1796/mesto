@@ -27,3 +27,11 @@
 @import url(../blocks/popup/__save-btn/popup__save-btn.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+
+@import url(../blocks/newSpace/__close/newSpace__close.css);
+@import url(../blocks/newSpace/__container/newSpace__container.css);
+@import url(../blocks/newSpace/__create-btn/newSpace__create-btn.css);
+@import url(../blocks/newSpace/__input/newSpace__input.css);
+@import url(../blocks/newSpace/__text/newSpace__text.css);
+@import url(../blocks/newSpace/_opened/newSpace_opened.css);
+@import url(../blocks/newSpace/newSpace.css);
