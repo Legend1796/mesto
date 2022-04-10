@@ -1,0 +1,16 @@
+.element__delete-urn {
+  background-image: url("../../../images/delete_urn.svg");
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  position: absolute;
+  top: 25px;
+  right: 20px;
+  width: 18px;
+  height: 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.element__delete-urn:hover {
+  cursor: pointer;
+}

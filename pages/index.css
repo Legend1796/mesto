@@ -10,7 +10,11 @@
 @import url(../blocks/element/__image/element__image.css);
 @import url(../blocks/element/__title/element__title.css);
 @import url(../blocks/element/__like/element__like.css);
+@import url(../blocks/element/__like/_active/element__like_active.css);
 @import url(../blocks/element/__rectangle/element__rectangle.css);
+@import url(../blocks/element/__image-btn/element__image-btn.css);
+@import url(../blocks/element/__delete-cap/element__delete-cap.css);
+@import url(../blocks/element/__delete-urn/element__delete-urn.css);
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
