@@ -1,4 +1,4 @@
-let profileEditButton = document.querySelector('.profile__edit-btn');
+//let profileEditButton = document.querySelector('.profile__edit-btn');
 let formElement = document.querySelector('.popup');
 let newSpaceElement = document.querySelector('.newSpace');
 let newSpaceCloseButton = document.querySelector('.newSpace__close');
@@ -11,43 +11,10 @@ let userName = document.querySelector('.profile__name');
 let about = document.querySelector('.profile__job');
 let cardNameInput = document.querySelector('.newSpace__input_type_name');
 let cardLinkInput = document.querySelector('.newSpace__input_type_link');
-
-function formSubmitHandler(evt) {
-  evt.preventDefault();
-  userName.textContent = nameInput.value;
-  about.textContent = jobInput.value;
-  closePopup();
-}
-
-function closePopup() {
-  formElement.classList.remove('popup_opened')
-}
-
-function closeNewSpace() {
-  newSpaceElement.classList.remove('newSpace_opened')
-}
-
-function createSpace() {
-  closeNewSpace()
-}
-
-addSpaceButton.addEventListener('click', function () {
-  newSpaceElement.classList.add('newSpace_opened');
-});
-
-profileEditButton.addEventListener('click', function () {
-  nameInput.value = userName.textContent;
-  jobInput.value = about.textContent;
-  formElement.classList.add('popup_opened');
-});
-
-popupCloseButton.addEventListener('click', closePopup);
-newSpaceCloseButton.addEventListener('click', closeNewSpace);
-createSpaceButton.addEventListener('click', createSpace);
-formElement.addEventListener('submit', formSubmitHandler);
-
 const elementsList = document.querySelector('.elements');
-const elementsTemplate = document.querySelector('.elem').content;
+
+// Массив с карточками
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -75,28 +42,74 @@ const initialCards = [
   }
 ];
 
-function reloadCards() {
+reloadElements();
+// Сохранение изменений профиля
+
+formElement.addEventListener('submit', function (evt) {
+  evt.preventDefault();
+  userName.textContent = nameInput.value;
+  about.textContent = jobInput.value;
+  closePopup();
+});
+
+// Открытие попапа
+
+document.querySelector('.profile__edit-btn').addEventListener('click', function () {
+  nameInput.value = userName.textContent;
+  jobInput.value = about.textContent;
+  formElement.classList.add('popup_opened');
+});
+
+// Закрытие попапа
+
+function closePopup() {
+  formElement.classList.remove('popup_opened')
+}
+
+popupCloseButton.addEventListener('click', closePopup);
+
+// Закрытие окна добавления места
+
+function closeNewSpace() {
+  newSpaceElement.classList.remove('newSpace_opened');
+}
+
+newSpaceCloseButton.addEventListener('click', closeNewSpace);
+
+// Открытие окна добавления места
+
+addSpaceButton.addEventListener('click', function () {
+  newSpaceElement.classList.add('newSpace_opened');
+});
+
+// Функция обновления карточек
+
+function reloadElements() {
   initialCards.forEach(function (elem) {
+    const elementsTemplate = document.querySelector('.elem').content;
     const cardElement = elementsTemplate.cloneNode(true);
+    // Лайк этой карточке
     cardElement.querySelector('.element__like').addEventListener('click', function (evt) {
       evt.target.classList.toggle('element__like_active');
     });
     cardElement.querySelector('.element__image').src = elem.link;
     cardElement.querySelector('.element__title').textContent = elem.name;
-    /*
-    const buttonDeletCard = cardElement.querySelector('.element__delete-urn');
-    buttonDeletCard.addEventListener('click', function (evt) {
-      alert('sss');
-      const cardForDel = evt.target.closest('element');
-      cardForDel.remove();
-    });  
-    */
-
+    const buttonDeletCard1 = cardElement.querySelector('.element__delete-urn');
+    const buttonDeletCard2 = cardElement.querySelector('.element__delete-cap');
+    buttonDeletCard1.addEventListener('click', deleteCard);
+    buttonDeletCard2.addEventListener('click', deleteCard);
     elementsList.append(cardElement)
   })
 }
 
-reloadCards();
+// Удаляем карточку
+
+function deleteCard(evt) {
+  const ardForDel = evt.target.closest('.element');
+  ardForDel.remove();
+}
+
+// Добавляем карточку
 
 newSpaceElement.addEventListener('submit', function (evt) {
   evt.preventDefault();
@@ -106,18 +119,13 @@ newSpaceElement.addEventListener('submit', function (evt) {
     name: cardName,
     link: cardLink
   });
-  deleteAllCards();
-  reloadCards();
-  closeNewSpace();
-});
-
-function deleteAllCards() {
   const cards = document.querySelectorAll('.element')
   cards.forEach((item) => {
     item.remove();
   })
-}
-
+  reloadElements();
+  closeNewSpace();
+});
 
 
 
