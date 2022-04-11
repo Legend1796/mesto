@@ -4,6 +4,8 @@ let nameInput = formElement.querySelector('.popup__input_type_name');
 let jobInput = formElement.querySelector('.popup__input_type_job');
 let userName = document.querySelector('.profile__name');
 let about = document.querySelector('.profile__job');
+let cardNameInput = document.querySelector('.newSpace__input_type_name');
+let cardLinkInput = document.querySelector('.newSpace__input_type_link');
 const elementsList = document.querySelector('.elements');
 const fullSizeImage = document.querySelector('.fullSize');
 // Массив с карточками
@@ -118,8 +120,8 @@ function reloadElements() {
 
 newSpaceElement.addEventListener('submit', function (evt) {
   evt.preventDefault();
-  const cardName = document.querySelector('.newSpace__input_type_name').value;
-  const cardLink = document.querySelector('.newSpace__input_type_link').value;
+  const cardName = cardNameInput.value;
+  const cardLink = cardLinkInput.value;
   const elementsTemplate = document.querySelector('.elem').content;
   const cardElement = elementsTemplate.cloneNode(true);
   cardElement.querySelector('.element__image').src = cardLink;
@@ -139,6 +141,8 @@ newSpaceElement.addEventListener('submit', function (evt) {
     fullSizeImage.querySelector('.fullSize__title').textContent = cardName;
   });
   elementsList.prepend(cardElement);
+  cardNameInput.value = '';
+  cardLinkInput.value = '';
   closeNewSpace();
 });
 
