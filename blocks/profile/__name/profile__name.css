@@ -8,13 +8,14 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  min-width: 293px;
 }
 
 @media screen and (max-width: 900px) {
   .profile__name {
     font-size: 27px;
     line-height: 33px;
-    max-width: 190px;
+    min-width: 188px;
   }
 }
 

@@ -40,7 +40,6 @@
       <li class="element">
         <img class="element__image" src="#" alt="Фото места">
         <button class="element__image-btn" type="button" aria-label="На весь экран фото места"></button>
-        <button class="element__delete-cap" type="button" aria-label="Удалить карточку места"></button>
         <button class="element__delete-urn" type="button" aria-label="Удалить карточку места"></button>
         <div class="element__rectangle">
           <h2 class="element__title"></h2>
@@ -64,16 +63,16 @@
         <button class="popup__close" type="button" aria-label="Закрыть"></button>
       </div>
     </div>
-    <div class="newSpace">
-      <div class="newSpace__container">
-        <h2 class="newSpace__text">Новое место</h2>
+    <div class="popup popup_newSpace">
+      <div class="popup__container popup__container_newSpace">
+        <h2 class="popup__text">Новое место</h2>
         <form name="user">
-          <input class="newSpace__input newSpace__input_type_name" placeholder="Название" type="text" name="name">
-          <input class="newSpace__input newSpace__input_type_link" placeholder="Ссылка на картинку" type="text"
+          <input class="popup__input popup__input_type_nameSpace" placeholder="Название" type="text" name="name">
+          <input class="popup__input popup__input_type_linkSpace" placeholder="Ссылка на картинку" type="text"
             name="about">
-          <button class="newSpace__create-btn" type="submit">Создать</button>
+          <button class="popup__save-btn" type="submit">Создать</button>
         </form>
-        <button class="newSpace__close" type="button" aria-label="Закрыть"></button>
+        <button class="popup__close popup__close_newSpace" type="button" aria-label="Закрыть"></button>
       </div>
     </div>
     <div class="fullSize">
