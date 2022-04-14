@@ -9,8 +9,11 @@
   height: 25px;
   background-repeat: no-repeat;
   background-position: center;
+  opacity: 1;
 }
 
 .element__delete-urn:hover {
+  transition: opacity .2s linear;
   cursor: pointer;
+  opacity: .6;
 }

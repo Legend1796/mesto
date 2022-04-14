@@ -52,7 +52,7 @@
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <div class="popup popup_profile">
       <div class="popup__container">
         <h2 class="popup__text">Редактировать профиль</h2>
         <form name="user">
@@ -63,23 +63,23 @@
         <button class="popup__close" type="button" aria-label="Закрыть"></button>
       </div>
     </div>
-    <div class="popup popup_newSpace">
-      <div class="popup__container popup__container_newSpace">
+    <div class="popup popup_new-space">
+      <div class="popup__container">
         <h2 class="popup__text">Новое место</h2>
-        <form name="user">
-          <input class="popup__input popup__input_type_nameSpace" placeholder="Название" type="text" name="name">
-          <input class="popup__input popup__input_type_linkSpace" placeholder="Ссылка на картинку" type="text"
-            name="about">
+        <form name="user" class="popup__form">
+          <input class="popup__input popup__input_type_name-space" placeholder="Название" type="text" name="newCard">
+          <input class="popup__input popup__input_type_link-space" placeholder="Ссылка на картинку" type="text"
+            name="linkNewCard">
           <button class="popup__save-btn" type="submit">Создать</button>
         </form>
-        <button class="popup__close popup__close_newSpace" type="button" aria-label="Закрыть"></button>
+        <button class="popup__close popup__close_new-space" type="button" aria-label="Закрыть"></button>
       </div>
     </div>
-    <div class="fullSize">
-      <div class="fullSize__container">
-        <button class="fullSize__close" type="button" aria-label="Закрыть"></button>
-        <img class="fullSize__image" src="#" alt="Фото места">
-        <h2 class="fullSize__title"></h2>
+    <div class="popup popup_full-size">
+      <div class="popup__container popup__container_full-size">
+        <button class="popup__close popup__close_full-size" type="button" aria-label="Закрыть"></button>
+        <img class="popup__image" src="#" alt="Фото места">
+        <h2 class="popup__title"></h2>
       </div>
     </div>
     <script src="./scripts/script.js">

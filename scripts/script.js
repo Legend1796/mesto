@@ -1,13 +1,13 @@
-const popupElement = document.querySelector('.popup');
-const newSpaceElement = document.querySelector('.popup_newSpace');
+const popupElement = document.querySelector('.popup_profile');
+const newSpaceElement = document.querySelector('.popup_new-space');
 const nameInput = popupElement.querySelector('.popup__input_type_name');
 const jobInput = popupElement.querySelector('.popup__input_type_job');
 const userName = document.querySelector('.profile__name');
 const userJob = document.querySelector('.profile__job');
-const cardNameInput = document.querySelector('.popup__input_type_nameSpace');
-const cardLinkInput = document.querySelector('.popup__input_type_linkSpace');
+const cardNameInput = document.querySelector('.popup__input_type_name-space');
+const cardLinkInput = document.querySelector('.popup__input_type_link-space');
 const cardList = document.querySelector('.elements');
-const fullSizeImage = document.querySelector('.fullSize');
+const fullSizeImage = document.querySelector('.popup_full-size');
 
 // Массив с карточками
 
@@ -38,53 +38,80 @@ const initialCards = [
   }
 ];
 
+// Открытие попапа
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+}
+
+// Закрытие попапа
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened')
+}
+
+// Открытие попапа профиля
+
+document.querySelector('.profile__edit-btn').addEventListener('click', function () {
+  const popup = popupElement;
+  nameInput.value = userName.textContent;
+  jobInput.value = userJob.textContent;
+  openPopup(popup);
+});
+
+// Закрытие попапа профиля
+
+document.querySelector('.popup__close').addEventListener('click', function () {
+  const popup = popupElement;
+  closePopup(popup);
+});
+
 // Сохранение изменений профиля
 
 popupElement.addEventListener('submit', function (evt) {
   evt.preventDefault();
   userName.textContent = nameInput.value;
   userJob.textContent = jobInput.value;
-  closePopup();
+  const popup = popupElement;
+  closePopup(popup);
 });
 
-// Открытие попапа
-
-function openPopup() {
-  popupElement.classList.add('popup_opened');
-  nameInput.value = userName.textContent;
-  jobInput.value = userJob.textContent;
-}
-
-document.querySelector('.profile__edit-btn').addEventListener('click', openPopup);
-
-// Закрытие попапа
-
-function closePopup() {
-  popupElement.classList.remove('popup_opened')
-}
-
-document.querySelector('.popup__close').addEventListener('click', closePopup);
-
-// Закрытия попапа просмотра карточки
-
-function closePopupCard() {
-  fullSizeImage.classList.remove('fullSize_opened')
-}
-
-document.querySelector('.fullSize__close').addEventListener('click', closePopupCard);
-
-// Закрытие окна добавления места
-
-function closeNewSpace() {
-  newSpaceElement.classList.remove('popup_opened');
-}
-
-document.querySelector('.popup__close_newSpace').addEventListener('click', closeNewSpace);
-
-// Открытие окна добавления места
+// Открытие попапа места
 
 document.querySelector('.profile__add-btn').addEventListener('click', function () {
-  newSpaceElement.classList.add('popup_opened');
+  const popup = newSpaceElement;
+  openPopup(popup);
+});
+
+// Закрытие попапа места
+
+document.querySelector('.popup__close_new-space').addEventListener('click', function () {
+  const popup = newSpaceElement;
+  closePopup(popup);
+});
+
+// Добавление нового места
+
+newSpaceElement.addEventListener('submit', formAddOneCardHandler);
+
+// Открытие попапа карточки
+
+function cardShow(evt) {
+  cardElementFull = evt.target.closest('.element');
+  const cardLinkFull = cardElementFull.querySelector('.element__image').src;
+  const cardNameFull = cardElementFull.querySelector('.element__title').textContent;
+  fullSizeImage.querySelector('.popup__image').src = cardLinkFull;
+  fullSizeImage.querySelector('.popup__image').alt = cardNameFull;
+  fullSizeImage.querySelector('.popup__title').textContent = cardNameFull;
+  const popup = fullSizeImage;
+  openPopup(popup);
+}
+
+// Закрытия попапа карточки
+
+document.querySelector('.popup__close_full-size').addEventListener('click', function () {
+  const popup = fullSizeImage;
+  closePopup(popup);
 });
 
 // Функция добавления карточек из массива
@@ -94,44 +121,44 @@ function renderCards() {
   initialCards.forEach(function (elem) {
     const cardName = elem.name;
     const cardLink = elem.link;
-    addCard(cardName, cardLink);
+    const elementsTemplate = document.querySelector('.elem').content;
+    const cardElement = elementsTemplate.cloneNode(true);
+    addCard(cardName, cardLink, cardElement);
+    cardList.append(cardElement);
   })
 }
+
 //Добавляем карточку вручную
-function addOneCard(evt) {
+
+function formAddOneCardHandler(evt) {
   evt.preventDefault();
+  const elementsTemplate = document.querySelector('.elem').content;
+  const cardElement = elementsTemplate.cloneNode(true);
   const cardName = cardNameInput.value;
   const cardLink = cardLinkInput.value;
-  addCard(cardName, cardLink);
+  addCard(cardName, cardLink, cardElement);
+  document.querySelector('.popup__form').reset(); // О, получилось! Пушка! Спасибо, прям код красивее стал!
+  //cardNameInput.value = ''; 
+  //cardLinkInput.value = '';
+  cardList.prepend(cardElement);
+  const popup = newSpaceElement;
+  closePopup(popup);
 };
 
 // Добавление карточек
 
-function addCard(cardName, cardLink) {
-  const elementsTemplate = document.querySelector('.elem').content;
-  const cardElement = elementsTemplate.cloneNode(true);
+function addCard(cardName, cardLink, cardElement) {
   cardElement.querySelector('.element__image').src = cardLink;
+  cardElement.querySelector('.element__image').alt = cardName;
   cardElement.querySelector('.element__title').textContent = cardName;
-  cardElement.querySelector('.element__image-btn').addEventListener('click', function () {
-    fullSizeImage.classList.add('fullSize_opened');
-    fullSizeImage.querySelector('.fullSize__image').src = cardLink;
-    fullSizeImage.querySelector('.fullSize__image').alt = cardName;
-    fullSizeImage.querySelector('.fullSize__title').textContent = cardName;
-  });
+  cardElement.querySelector('.element__image-btn').addEventListener('click', cardShow);
   cardElement.querySelector('.element__delete-urn').addEventListener('click', deleteCard);
   cardElement.querySelector('.element__like').addEventListener('click', likeCard);
-  if (cardNameInput.value != '') {
-    cardList.prepend(cardElement);
-    cardNameInput.value = '';//вот тут на метод "reset" движок почему-то ругался на меня (говорит, что это не функция) 
-    cardLinkInput.value = '';//однако мне интересно это реализовать, можно еще подсказку?)))
-    closeNewSpace();
-  }
-  else {
-    cardList.append(cardElement);
-  }
+  return cardElement;
 }
 
-newSpaceElement.addEventListener('submit', addOneCard);
+
+
 // Лайк этой карточке
 
 function likeCard(evt) {
