@@ -157,8 +157,6 @@ function addCard(cardName, cardLink, cardElement) {
   return cardElement;
 }
 
-
-
 // Лайк этой карточке
 
 function likeCard(evt) {
