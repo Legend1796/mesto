@@ -1,7 +1,7 @@
-const popupElement = document.querySelector('.popup_profile');
+const popupProfile = document.querySelector('.popup_profile');
 const newSpaceElement = document.querySelector('.popup_new-space');
-const nameInput = popupElement.querySelector('.popup__input_type_name');
-const jobInput = popupElement.querySelector('.popup__input_type_job');
+const nameInput = popupProfile.querySelector('.popup__input_type_name');
+const jobInput = popupProfile.querySelector('.popup__input_type_job');
 const userName = document.querySelector('.profile__name');
 const userJob = document.querySelector('.profile__job');
 const cardNameInput = document.querySelector('.popup__input_type_name-space');
@@ -53,41 +53,39 @@ function closePopup(popup) {
 // Открытие попапа профиля
 
 document.querySelector('.profile__edit-btn').addEventListener('click', function () {
-  const popup = popupElement;
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
-  openPopup(popup);
+  openPopup(popupProfile);
 });
 
 // Закрытие попапа профиля
+document.querySelector('.popup__close').addEventListener('click', function () {
+  closePopup(popupProfile);
+});
 
 document.querySelector('.popup__close').addEventListener('click', function () {
-  const popup = popupElement;
-  closePopup(popup);
+  closePopup(popupProfile);
 });
 
 // Сохранение изменений профиля
 
-popupElement.addEventListener('submit', function (evt) {
+popupProfile.addEventListener('submit', function (evt) {
   evt.preventDefault();
   userName.textContent = nameInput.value;
   userJob.textContent = jobInput.value;
-  const popup = popupElement;
-  closePopup(popup);
+  closePopup(popupProfile);
 });
 
 // Открытие попапа места
 
 document.querySelector('.profile__add-btn').addEventListener('click', function () {
-  const popup = newSpaceElement;
-  openPopup(popup);
+  openPopup(newSpaceElement);
 });
 
 // Закрытие попапа места
 
 document.querySelector('.popup__close_new-space').addEventListener('click', function () {
-  const popup = newSpaceElement;
-  closePopup(popup);
+  closePopup(newSpaceElement);
 });
 
 // Добавление нового места
@@ -96,22 +94,20 @@ newSpaceElement.addEventListener('submit', formAddOneCardHandler);
 
 // Открытие попапа карточки
 
-function cardShow(evt) {
-  cardElementFull = evt.target.closest('.element');
+function showCard(evt) {
+  const cardElementFull = evt.target.closest('.element');
   const cardLinkFull = cardElementFull.querySelector('.element__image').src;
   const cardNameFull = cardElementFull.querySelector('.element__title').textContent;
   fullSizeImage.querySelector('.popup__image').src = cardLinkFull;
   fullSizeImage.querySelector('.popup__image').alt = cardNameFull;
   fullSizeImage.querySelector('.popup__title').textContent = cardNameFull;
-  const popup = fullSizeImage;
-  openPopup(popup);
+  openPopup(fullSizeImage);
 }
 
 // Закрытия попапа карточки
 
 document.querySelector('.popup__close_full-size').addEventListener('click', function () {
-  const popup = fullSizeImage;
-  closePopup(popup);
+  closePopup(fullSizeImage);
 });
 
 // Функция добавления карточек из массива
@@ -121,10 +117,7 @@ function renderCards() {
   initialCards.forEach(function (elem) {
     const cardName = elem.name;
     const cardLink = elem.link;
-    const elementsTemplate = document.querySelector('.elem').content;
-    const cardElement = elementsTemplate.cloneNode(true);
-    addCard(cardName, cardLink, cardElement);
-    cardList.append(cardElement);
+    cardList.append(createCard(cardName, cardLink)); // Когда я передавал сюда cardElement, то появлялись ахтунги. Пришлось выкручиваться так...
   })
 }
 
@@ -132,26 +125,22 @@ function renderCards() {
 
 function formAddOneCardHandler(evt) {
   evt.preventDefault();
-  const elementsTemplate = document.querySelector('.elem').content;
-  const cardElement = elementsTemplate.cloneNode(true);
   const cardName = cardNameInput.value;
   const cardLink = cardLinkInput.value;
-  addCard(cardName, cardLink, cardElement);
-  document.querySelector('.popup__form').reset(); // О, получилось! Пушка! Спасибо, прям код красивее стал!
-  //cardNameInput.value = ''; 
-  //cardLinkInput.value = '';
-  cardList.prepend(cardElement);
-  const popup = newSpaceElement;
-  closePopup(popup);
+  document.querySelector('.popup__form').reset();
+  cardList.prepend(createCard(cardName, cardLink));
+  closePopup(newSpaceElement);
 };
 
 // Добавление карточек
 
-function addCard(cardName, cardLink, cardElement) {
+function createCard(cardName, cardLink) {
+  const elementsTemplate = document.querySelector('.elem').content;
+  const cardElement = elementsTemplate.cloneNode(true);
   cardElement.querySelector('.element__image').src = cardLink;
   cardElement.querySelector('.element__image').alt = cardName;
   cardElement.querySelector('.element__title').textContent = cardName;
-  cardElement.querySelector('.element__image-btn').addEventListener('click', cardShow);
+  cardElement.querySelector('.element__image-btn').addEventListener('click', showCard);
   cardElement.querySelector('.element__delete-urn').addEventListener('click', deleteCard);
   cardElement.querySelector('.element__like').addEventListener('click', likeCard);
   return cardElement;
