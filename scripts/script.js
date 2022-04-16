@@ -90,7 +90,7 @@ document.querySelector('.popup__close_new-space').addEventListener('click', func
 
 // Добавление нового места
 
-newSpaceElement.addEventListener('submit', formAddOneCardHandler);
+newSpaceElement.addEventListener('submit', formAddCardSubmitHandler);
 
 // Открытие попапа карточки
 
@@ -117,18 +117,20 @@ function renderCards() {
   initialCards.forEach(function (elem) {
     const cardName = elem.name;
     const cardLink = elem.link;
-    cardList.append(createCard(cardName, cardLink)); // Когда я передавал сюда cardElement, то появлялись ахтунги. Пришлось выкручиваться так...
+    const cardElement = createCard(cardName, cardLink);
+    cardList.append(cardElement)
   })
 }
 
 //Добавляем карточку вручную
 
-function formAddOneCardHandler(evt) {
+function formAddCardSubmitHandler(evt) {
   evt.preventDefault();
   const cardName = cardNameInput.value;
   const cardLink = cardLinkInput.value;
   document.querySelector('.popup__form').reset();
-  cardList.prepend(createCard(cardName, cardLink));
+  const cardElement = createCard(cardName, cardLink);
+  cardList.prepend(cardElement)
   closePopup(newSpaceElement);
 };
 
