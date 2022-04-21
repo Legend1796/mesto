@@ -38,6 +38,22 @@ const initialCards = [
   }
 ];
 
+// Закрытие попапов по клику на оверлэй и на Escape
+
+const popup = document.querySelectorAll('.popup');
+popup.forEach((popup) => {
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      closePopup(popup);
+    }
+  });
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.className === 'popup__overlay') {
+      closePopup(popup);
+    }
+  });
+});
+
 // Открытие попапа
 
 function openPopup(popup) {
@@ -59,10 +75,6 @@ document.querySelector('.profile__edit-btn').addEventListener('click', function 
 });
 
 // Закрытие попапа профиля
-document.querySelector('.popup__close').addEventListener('click', function () {
-  closePopup(popupProfile);
-});
-
 document.querySelector('.popup__close').addEventListener('click', function () {
   closePopup(popupProfile);
 });
