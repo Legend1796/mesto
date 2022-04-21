@@ -1,3 +1,4 @@
+const popup = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile');
 const newSpaceElement = document.querySelector('.popup_new-space');
 const nameInput = popupProfile.querySelector('.popup__input_type_name');
@@ -40,15 +41,20 @@ const initialCards = [
 
 // Закрытие попапов по клику на оверлэй и на Escape и на кнопку крестика
 
-const popup = document.querySelectorAll('.popup');
 popup.forEach((popup) => {
-  document.addEventListener('keydown', (evt) => {
+  document.addEventListener('keydown', function (evt) {
     if (evt.key === 'Escape') {
       closePopup(popup);
     }
   });
-  popup.addEventListener('click', (evt) => {
-    if (evt.target.className === 'popup__overlay' || 'popup__close') {
+  popup.addEventListener('click', function (evt) {
+    if (evt.target.className === 'popup__overlay') {
+      closePopup(popup);
+    }
+  });
+  popup.addEventListener('click', function (evt) {
+    console.log(evt.target.className);
+    if (evt.target.className === 'popup__close') {
       closePopup(popup);
     }
   });
