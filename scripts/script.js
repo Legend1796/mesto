@@ -38,7 +38,7 @@ const initialCards = [
   }
 ];
 
-// Закрытие попапов по клику на оверлэй и на Escape
+// Закрытие попапов по клику на оверлэй и на Escape и на кнопку крестика
 
 const popup = document.querySelectorAll('.popup');
 popup.forEach((popup) => {
@@ -48,7 +48,7 @@ popup.forEach((popup) => {
     }
   });
   popup.addEventListener('click', (evt) => {
-    if (evt.target.className === 'popup__overlay') {
+    if (evt.target.className === 'popup__overlay' || 'popup__close') {
       closePopup(popup);
     }
   });
@@ -74,11 +74,6 @@ document.querySelector('.profile__edit-btn').addEventListener('click', function 
   openPopup(popupProfile);
 });
 
-// Закрытие попапа профиля
-document.querySelector('.popup__close').addEventListener('click', function () {
-  closePopup(popupProfile);
-});
-
 // Сохранение изменений профиля
 
 popupProfile.addEventListener('submit', function (evt) {
@@ -92,12 +87,6 @@ popupProfile.addEventListener('submit', function (evt) {
 
 document.querySelector('.profile__add-btn').addEventListener('click', function () {
   openPopup(newSpaceElement);
-});
-
-// Закрытие попапа места
-
-document.querySelector('.popup__close_new-space').addEventListener('click', function () {
-  closePopup(newSpaceElement);
 });
 
 // Добавление нового места
