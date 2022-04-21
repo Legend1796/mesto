@@ -105,12 +105,6 @@ function showCard(evt) {
   openPopup(fullSizeImage);
 }
 
-// Закрытия попапа карточки
-
-document.querySelector('.popup__close_full-size').addEventListener('click', function () {
-  closePopup(fullSizeImage);
-});
-
 // Функция добавления карточек из массива
 
 renderCards();
