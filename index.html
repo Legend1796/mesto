@@ -57,8 +57,10 @@
       <div class="popup__container">
         <h2 class="popup__text">Редактировать профиль</h2>
         <form name="user">
-          <input class="popup__input popup__input_type_name" type="text" name="name">
-          <input class="popup__input popup__input_type_job" type="text" name="about">
+          <input class="popup__input popup__input_type_name" type="text" name="name" placeholder="Имя" minlength="2"
+            maxlength="40">
+          <input class="popup__input popup__input_type_job" type="text" name="about" placeholder="О себе" minlength="2"
+            maxlength="200">
           <button class="popup__save-btn" type="submit">Сохранить</button>
         </form>
         <button class="popup__close" type="button" aria-label="Закрыть"></button>
@@ -69,9 +71,10 @@
       <div class="popup__container">
         <h2 class="popup__text">Новое место</h2>
         <form name="user" class="popup__form">
-          <input class="popup__input popup__input_type_name-space" placeholder="Название" type="text" name="newCard">
-          <input class="popup__input popup__input_type_link-space" placeholder="Ссылка на картинку" type="text"
-            name="linkNewCard">
+          <input class="popup__input popup__input_type_name-space" type="text" name="newCard"
+            placeholder="Название места">
+          <input class="popup__input popup__input_type_link-space" type="url" name="linkNewCard"
+            placeholder="Ссылка на картинку">
           <button class="popup__save-btn" type="submit">Создать</button>
         </form>
         <button class="popup__close" type="button" aria-label="Закрыть"></button>
