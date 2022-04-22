@@ -1,25 +1,3 @@
 .popup__input-error_active {
-  width: 358px;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 15px;
-  color: #ff0000;
-  position: absolute;
-  left: 36px;
-  top: 31px;
-}
-
-/*
-Проверил в Pixel Perfect отступ сверху.
-Должно быть конечно 33рх, но это кажется слишком низко
-когда текст ошибки длинный и переносится на вторую строку.
-Он практически касается нижнего инпута. 
-Выглядит так себе, поэтому я позволил себе ради красоты отойти от идеала
-*/
-
-@media screen and (max-width: 605px) {
-  .popup__input-error_active {
-    width: 238px;
-    left: 22px;
-  }
+  opacity: 1 !important;
 }

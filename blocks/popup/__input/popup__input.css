@@ -2,21 +2,18 @@
   width: 358px;
   margin: 0;
   padding: 0;
-  padding-bottom: 9px;
+  padding-bottom: 8px;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
   margin-left: 36px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 3px;
 }
 
 .popup__input:focus {
   outline-color: rgba(0, 0, 255, .4);
-}
-
-.popup__input:first-child {
-  margin-bottom: 30px;
 }
 
 @media screen and (max-width: 605px) {
