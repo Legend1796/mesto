@@ -129,7 +129,6 @@ function formAddCardSubmitHandler(evt) {
   const cardName = cardNameInput.value;
   const cardLink = cardLinkInput.value;
   document.forms.mesto.reset();
-  console.log(document.querySelector('.popup__form'));
   const cardElement = createCard(cardName, cardLink);
   cardList.prepend(cardElement)
   closePopup(newSpaceElement);
