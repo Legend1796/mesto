@@ -56,11 +56,11 @@
       <button class="popup__overlay" type="button" aria-label="Оверлэй"></button>
       <div class="popup__container">
         <h2 class="popup__text">Редактировать профиль</h2>
-        <form name="user">
+        <form name="user" class="popup__form" novalidate>
           <input class="popup__input popup__input_type_name" type="text" name="name" placeholder="Имя" minlength="2"
-            maxlength="40">
+            maxlength="40" required>
           <input class="popup__input popup__input_type_job" type="text" name="about" placeholder="О себе" minlength="2"
-            maxlength="200">
+            maxlength="200" required>
           <button class="popup__save-btn" type="submit">Сохранить</button>
         </form>
         <button class="popup__close" type="button" aria-label="Закрыть"></button>
@@ -70,11 +70,11 @@
       <button class="popup__overlay" type="button" aria-label="Оверлэй"></button>
       <div class="popup__container">
         <h2 class="popup__text">Новое место</h2>
-        <form name="user" class="popup__form">
-          <input class="popup__input popup__input_type_name-space" type="text" name="newCard"
-            placeholder="Название места">
-          <input class="popup__input popup__input_type_link-space" type="url" name="linkNewCard"
-            placeholder="Ссылка на картинку">
+        <form name="user" class="popup__form" novalidate>
+          <input class="popup__input popup__input_type_name-space popup__input_type_error" type="text" name="newCard"
+            placeholder="Название места" required>
+          <input class="popup__input popup__input_type_link-space popup__input_type_error" type="url" name="linkNewCard"
+            placeholder="Ссылка на картинку" required>
           <button class="popup__save-btn" type="submit">Создать</button>
         </form>
         <button class="popup__close" type="button" aria-label="Закрыть"></button>
@@ -90,8 +90,8 @@
     </div>
     <script src="./scripts/script.js">
     </script>
-    <!-- <script src="./scripts/validate.js"> -->
-    <!-- </script> -->
+    <script src="./scripts/validate.js">
+    </script>
   </div>
 </body>
 

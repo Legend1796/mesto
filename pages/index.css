@@ -35,3 +35,4 @@
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__overlay/popup__overlay.css);
 @import url(../blocks/popup/__container/_full-size/popup__container_full-size.css);
+@import url(../blocks/popup/__input/_type/popup__input_type_error.css);
