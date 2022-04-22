@@ -34,6 +34,7 @@ function setEventListeners(formElement) {
     });
     document.querySelector('.profile__add-btn').addEventListener('click', () => {
       toggleButtonState(inputList, buttonElement);
+      hideError(formElement, inputElement);
     });
     inputElement.addEventListener('input', function () {
       checkInputValidity(formElement, inputElement);
