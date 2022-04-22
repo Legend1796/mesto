@@ -29,18 +29,18 @@ function setEventListeners(formElement) {
   const buttonElement = formElement.querySelector('.popup__save-btn');
   inputList.forEach((inputElement) => {
     document.querySelector('.popup__close').addEventListener('click', function () {
-      enableValidation();
       hideError(formElement, inputElement);
       buttonElement.classList.remove('popup__save-btn_disabled');
       buttonElement.removeAttribute('disabled');
     });
     document.querySelector('.popup__overlay').addEventListener('click', function () {
-      enableValidation();
       hideError(formElement, inputElement);
       buttonElement.classList.remove('popup__save-btn_disabled');
       buttonElement.removeAttribute('disabled');
     });
-
+    document.querySelector('.profile__add-btn').addEventListener('click', () => {
+      toggleButtonState(inputList, buttonElement);
+    });
     inputElement.addEventListener('input', function () {
       checkInputValidity(formElement, inputElement);
       toggleButtonState(inputList, buttonElement);
@@ -77,5 +77,3 @@ const toggleButtonState = (inputList, buttonElement) => {
     buttonElement.removeAttribute('disabled');
   }
 };
-
-// Функция проверяет валидность при открытии попапов
