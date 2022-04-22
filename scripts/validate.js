@@ -28,15 +28,9 @@ function setEventListeners(formElement) {
   const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
   const buttonElement = formElement.querySelector('.popup__save-btn');
   inputList.forEach((inputElement) => {
-    document.querySelector('.popup__close').addEventListener('click', function () {
-      hideError(formElement, inputElement);
-      buttonElement.classList.remove('popup__save-btn_disabled');
-      buttonElement.removeAttribute('disabled');
-    });
-    document.querySelector('.popup__overlay').addEventListener('click', function () {
-      hideError(formElement, inputElement);
-      buttonElement.classList.remove('popup__save-btn_disabled');
-      buttonElement.removeAttribute('disabled');
+    document.querySelector('.profile__edit-btn').addEventListener('click', function () {
+      checkInputValidity(formElement, inputElement);
+      toggleButtonState(inputList, buttonElement);
     });
     document.querySelector('.profile__add-btn').addEventListener('click', () => {
       toggleButtonState(inputList, buttonElement);
