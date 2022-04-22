@@ -1,17 +1,3 @@
-// включение валидации вызовом enableValidation
-// все настройки передаются при вызове
-/*
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-});
-
-*/
-
 // Функция, которая добавляет класс с ошибкой
 const showError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -40,9 +26,11 @@ const checkInputValidity = (formElement, inputElement) => {
 // Функция, которая передает элемент, который нужно проверить
 function setEventListeners(formElement) {
   const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+  const buttonElement = formElement.querySelector('.popup__save-btn');
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       checkInputValidity(formElement, inputElement);
+      toggleButtonState(inputList, buttonElement);
     });
   });
 }
@@ -66,11 +54,13 @@ const hasInvalidInput = (inputList) => {
   })
 };
 
-
+// Функция добавляет или удаляет класс неактивной кнопки в зависимости от валидности инпутов
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('popup__button_disabled');
+    buttonElement.classList.add('popup__save-btn_disabled');
+    buttonElement.setAttribute('disabled', true);
   } else {
-    buttonElement.classList.remove('popup__button_disabled');
+    buttonElement.classList.remove('popup__save-btn_disabled');
+    buttonElement.removeAttribute('disabled');
   }
 };
