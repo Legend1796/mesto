@@ -53,7 +53,6 @@ popup.forEach((popup) => {
     }
   });
   popup.addEventListener('click', function (evt) {
-    console.log(evt.target.className);
     if (evt.target.className === 'popup__close') {
       closePopup(popup);
     }
