@@ -75,20 +75,28 @@ function closePopup(popup) {
 
 // Открытие попапа профиля
 
-document.querySelector('.profile__edit-btn').addEventListener('click', function () {
+document.querySelector('.profile__edit-btn').addEventListener('click', addTextFromProfile);
+
+// Функция добавления инпутам текста из профиля
+
+function addTextFromProfile() {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
   openPopup(popupProfile);
-});
+}
 
 // Сохранение изменений профиля
 
-popupProfile.addEventListener('submit', function (evt) {
+popupProfile.addEventListener('submit', saveChangesProfile);
+
+// Функция сохранения изменений профиля
+
+function saveChangesProfile(evt) {
   evt.preventDefault();
   userName.textContent = nameInput.value;
   userJob.textContent = jobInput.value;
   closePopup(popupProfile);
-});
+}
 
 // Открытие попапа места
 
