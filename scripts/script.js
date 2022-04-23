@@ -39,14 +39,19 @@ const initialCards = [
   }
 ];
 
-// Закрытие попапов по клику на оверлэй и на Escape и на кнопку крестика
+// Функция закрытия попапа по нажатию на Escape
 
-popup.forEach((popup) => {
-  document.addEventListener('keydown', function (evt) {
+function closePopupOnEsc(evt) {
+  popup.forEach((popup) => {
     if (evt.key === 'Escape') {
       closePopup(popup);
     }
   });
+}
+
+// Закрытие попапов по клику на оверлэй и на кнопку крестика
+
+popup.forEach((popup) => {
   popup.addEventListener('click', function (evt) {
     if ((evt.target.className === 'popup__overlay') || (evt.target.className === 'popup__close')) {
       closePopup(popup);
@@ -58,12 +63,14 @@ popup.forEach((popup) => {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupOnEsc);
 }
 
 // Закрытие попапа
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened')
+  document.removeEventListener('keydown', closePopupOnEsc);
 }
 
 // Открытие попапа профиля
