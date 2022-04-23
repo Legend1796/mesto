@@ -48,12 +48,7 @@ popup.forEach((popup) => {
     }
   });
   popup.addEventListener('click', function (evt) {
-    if (evt.target.className === 'popup__overlay') {
-      closePopup(popup);
-    }
-  });
-  popup.addEventListener('click', function (evt) {
-    if (evt.target.className === 'popup__close') {
+    if ((evt.target.className === 'popup__overlay') || (evt.target.className === 'popup__close')) {
       closePopup(popup);
     }
   });
@@ -96,7 +91,7 @@ document.querySelector('.profile__add-btn').addEventListener('click', function (
 
 // Добавление нового места
 
-newSpaceElement.addEventListener('submit', formAddCardSubmitHandler);
+newSpaceElement.addEventListener('submit', handleAddCardFormSubmit);
 
 // Открытие попапа карточки
 
@@ -124,7 +119,7 @@ function renderCards() {
 
 //Добавляем карточку вручную
 
-function formAddCardSubmitHandler(evt) {
+function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
   const cardName = cardNameInput.value;
   const cardLink = cardLinkInput.value;
