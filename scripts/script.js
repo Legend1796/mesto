@@ -13,11 +13,10 @@ const fullSizeImage = document.querySelector('.popup_full-size');
 // Функция закрытия попапа по нажатию на Escape
 
 function closePopupOnEsc(evt) {
-  popup.forEach((popup) => {
-    if (evt.key === 'Escape') {
-      closePopup(popup);
-    }
-  });
+  if (evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened')
+    closePopup(popupOpened);
+  }
 }
 
 // Закрытие попапов по клику на оверлэй и на кнопку крестика
