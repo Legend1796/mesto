@@ -48,11 +48,15 @@ function closePopup(popup) {
 
 document.querySelector('.profile__edit-btn').addEventListener('click', addTextFromProfile);
 
-// Функция добавления инпутам текста из профиля
+// Функция добавления инпутам текста из профиля + разблокировка кнопки сохранения
 
 function addTextFromProfile() {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
+  const buttonElement = popupProfile.querySelector('.popup__save-btn');
+  buttonElement.classList.remove('popup__save-btn_disabled');
+  buttonElement.removeAttribute('disabled');
+  //hideError(formElement, inputElement);
   openPopup(popupProfile);
 }
 
@@ -69,9 +73,16 @@ function saveChangesProfile(evt) {
   closePopup(popupProfile);
 }
 
-// Открытие попапа места
+// Открытие попапа места + делаем кнопку сохранения неактивной
+// Вы мне предлагали блокировать кнопку после добавления карточки 
+// в функции-сабмите формы добавления карточки, однако это не решало проблему
+// блокировки кнопки при первом открытии этого попапа. Поэтому я просто решил деактивировать кнопку
+// всякий раз, когда открывают попап. Он все равно с пустыми полями всегда.
 
 document.querySelector('.profile__add-btn').addEventListener('click', function () {
+  const buttonElement = newSpaceElement.querySelector('.popup__save-btn');
+  buttonElement.classList.add('popup__save-btn_disabled');
+  buttonElement.setAttribute('disabled', true);
   openPopup(newSpaceElement);
 });
 
@@ -107,10 +118,6 @@ function renderCards() {
 
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
-  const buttonElement = newSpaceElement.querySelector('.popup__save-btn');
-  buttonElement.classList.add('popup__save-btn_disabled');
-  buttonElement.setAttribute('disabled', true);
-
   const cardName = cardNameInput.value;
   const cardLink = cardLinkInput.value;
   document.forms.mesto.reset();
