@@ -78,15 +78,8 @@ function saveChangesProfile(evt) {
 }
 
 // Открытие попапа места + делаем кнопку сохранения неактивной
-// Вы мне предлагали блокировать кнопку после добавления карточки 
-// в функции-сабмите формы добавления карточки, однако это не решало проблему
-// блокировки кнопки при первом открытии этого попапа. Поэтому я просто решил деактивировать кнопку
-// всякий раз, когда открывают попап. Он все равно с пустыми полями всегда.
 
 document.querySelector('.profile__add-btn').addEventListener('click', function () {
-  const buttonElement = newSpaceElement.querySelector('.popup__save-btn');
-  buttonElement.classList.add('popup__save-btn_disabled');
-  buttonElement.setAttribute('disabled', true);
   openPopup(newSpaceElement);
 });
 
@@ -127,6 +120,9 @@ function handleAddCardFormSubmit(evt) {
   document.forms.mesto.reset();
   const cardElement = createCard(cardName, cardLink);
   cardList.prepend(cardElement)
+  const buttonElement = newSpaceElement.querySelector('.popup__save-btn');
+  buttonElement.classList.add('popup__save-btn_disabled');
+  buttonElement.setAttribute('disabled', true);
   closePopup(newSpaceElement);
 };
 
