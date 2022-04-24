@@ -28,10 +28,6 @@ function setEventListeners(formElement) {
   const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
   const buttonElement = formElement.querySelector('.popup__save-btn');
   inputList.forEach((inputElement) => {
-    document.querySelector('.profile__edit-btn').addEventListener('click', function () {
-      checkInputValidity(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
-    });
     document.querySelector('.profile__add-btn').addEventListener('click', () => {
       toggleButtonState(inputList, buttonElement);
       hideError(formElement, inputElement);
@@ -57,7 +53,6 @@ enableValidation();
 // Функция принимает массив полей и ищет хотя бы одно поле, которое не прошло валидацию
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
-
     return !inputElement.validity.valid;
   })
 };

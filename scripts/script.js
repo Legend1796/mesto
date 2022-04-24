@@ -107,6 +107,10 @@ function renderCards() {
 
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
+  const buttonElement = newSpaceElement.querySelector('.popup__save-btn');
+  buttonElement.classList.add('popup__save-btn_disabled');
+  buttonElement.setAttribute('disabled', true);
+
   const cardName = cardNameInput.value;
   const cardLink = cardLinkInput.value;
   document.forms.mesto.reset();
