@@ -76,7 +76,7 @@ function saveChangesProfile(evt) {
   closePopup(popupProfile);
 }
 
-// Открытие попапа места + делаем кнопку сохранения неактивной
+// Открытие попапа места
 
 document.querySelector('.profile__add-btn').addEventListener('click', function () {
   openPopup(newSpaceElement);
@@ -110,7 +110,7 @@ function renderCards() {
   })
 }
 
-//Добавляем карточку вручную
+//Добавляем карточку вручную + делаем кнопку сохранения неактивной
 
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
