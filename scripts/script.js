@@ -48,7 +48,7 @@ function closePopup(popup) {
 
 document.querySelector('.profile__edit-btn').addEventListener('click', addTextFromProfile);
 
-// Функция добавления инпутам текста из профиля + разблокировка кнопки сохранения
+// Функция добавления инпутам текста из профиля + разблокировка кнопки сохранения + очистка ошибок
 
 function addTextFromProfile() {
   nameInput.value = userName.textContent;
@@ -56,7 +56,11 @@ function addTextFromProfile() {
   const buttonElement = popupProfile.querySelector('.popup__save-btn');
   buttonElement.classList.remove('popup__save-btn_disabled');
   buttonElement.removeAttribute('disabled');
-  //hideError(formElement, inputElement);
+  const formElement = document.querySelector('.popup__form');
+  const inputList = Array.from(formElement.querySelectorAll(params.inputSelector));
+  inputList.forEach((inputElement) => {
+    hideError(formElement, inputElement);
+  });
   openPopup(popupProfile);
 }
 

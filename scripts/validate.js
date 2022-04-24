@@ -40,10 +40,8 @@ function setEventListeners(formElement) {
   const inputList = Array.from(formElement.querySelectorAll(params.inputSelector));
   const buttonElement = formElement.querySelector(params.submitButtonSelector);
   inputList.forEach((inputElement) => {
-    // document.querySelector('.profile__add-btn').addEventListener('click', () => {
-    //   hideError(formElement, inputElement);
-    // });
     inputElement.addEventListener('input', function () {
+      console.log(formElement);
       checkInputValidity(formElement, inputElement);
       toggleButtonState(inputList, buttonElement);
     });
