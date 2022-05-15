@@ -1,3 +1,8 @@
+// импорт классов Card и FormValidator
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+
+
 const popup = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile');
 const newSpaceElement = document.querySelector('.popup_new-space');
