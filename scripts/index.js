@@ -1,6 +1,6 @@
 // импорт классов Card и FormValidator
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
+// import { Card } from './Card.js';
+// import { FormValidator } from './FormValidator.js';
 
 
 const popup = document.querySelectorAll('.popup');
@@ -105,7 +105,7 @@ function showCard(evt) {
 
 // Функция добавления карточек из массива
 
-renderCards();
+// renderCards();
 function renderCards() {
   initialCards.forEach(function (elem) {
     const cardName = elem.name;
