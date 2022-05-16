@@ -1,6 +1,6 @@
-export { Card };
-// Массив с карточками
-const initialCards = [
+import { openPopup } from './index.js';
+
+export const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -27,25 +27,34 @@ const initialCards = [
   }
 ];
 
-
-//Создайте класс Card, который создаёт карточку с текстом и ссылкой на изображение
-
-class Card {
-  //принимает в конструктор её данные и селектор её template-элемента;
+export class Card {
   constructor(data) {
     this._name = data.name;
     this._link = data.link;
   }
+
   _getTemplate() {
     const cardElement = document.querySelector('.elem').content.querySelector('.element').cloneNode(true);
     return cardElement;
   }
+
   _setEventListeners() {
-    this._element.querySelector('.element__image-btn').addEventListener('click', showCard);
-    this._element.querySelector('.element__delete-urn').addEventListener('click', deleteCard);
-    this._element.querySelector('.element__like').addEventListener('click', likeCard);
+    this._element.querySelector('.element__delete-urn').addEventListener('click', (evt) => evt.target.closest('.element').remove());
+    this._element.querySelector('.element__like').addEventListener('click', (evt) => evt.target.classList.toggle('element__like_active'));
+    this._element.querySelector('.element__image-btn').addEventListener('click', (evt) => {
+      const fullSizeImage = document.querySelector('.popup_full-size');
+      const cardElementFull = evt.target.closest('.element');
+      const cardLinkFull = cardElementFull.querySelector('.element__image').src;
+      const cardNameFull = cardElementFull.querySelector('.element__title').textContent;
+      fullSizeImage.querySelector('.popup__image').src = cardLinkFull;
+      fullSizeImage.querySelector('.popup__image').alt = cardNameFull;
+      fullSizeImage.querySelector('.popup__title').textContent = cardNameFull;
+      openPopup(fullSizeImage);
+    });
   }
+
   renderCard() {
+    console.log('item');
     this._element = this._getTemplate();
     this._setEventListeners();
     this._element.querySelector('.element__image').src = this._link;
@@ -55,14 +64,8 @@ class Card {
   }
 }
 
-
-// Создадим экземпляр карточек
 initialCards.forEach((item) => {
   const card = new Card(item);
   const cardElement = card.renderCard();
   document.querySelector('.elements').append(cardElement);
 });
-
-// cardElement.querySelector('.element__image-btn').addEventListener('click', showCard);
-// cardElement.querySelector('.element__delete-urn').addEventListener('click', deleteCard);
-// cardElement.querySelector('.element__like').addEventListener('click', likeCard);
