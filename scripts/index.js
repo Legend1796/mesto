@@ -1,7 +1,6 @@
 // импорт классов Card и FormValidator
-// import { Card } from './Card.js';
+import { Card } from './Card.js';
 // import { FormValidator } from './FormValidator.js';
-
 
 const popup = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile');
@@ -106,14 +105,14 @@ function showCard(evt) {
 // Функция добавления карточек из массива
 
 // renderCards();
-function renderCards() {
-  initialCards.forEach(function (elem) {
-    const cardName = elem.name;
-    const cardLink = elem.link;
-    const cardElement = createCard(cardName, cardLink);
-    cardList.append(cardElement)
-  })
-}
+// function renderCards() {
+//   initialCards.forEach(function (elem) {
+//     const cardName = elem.name;
+//     const cardLink = elem.link;
+//     const cardElement = createCard(cardName, cardLink);
+//     cardList.append(cardElement)
+//   })
+// }
 
 //Добавляем карточку вручную + делаем кнопку сохранения неактивной
 
@@ -132,17 +131,17 @@ function handleAddCardFormSubmit(evt) {
 
 // Добавление карточек
 
-function createCard(cardName, cardLink) {
-  const elementsTemplate = document.querySelector('.elem').content;
-  const cardElement = elementsTemplate.cloneNode(true);
-  cardElement.querySelector('.element__image').src = cardLink;
-  cardElement.querySelector('.element__image').alt = cardName;
-  cardElement.querySelector('.element__title').textContent = cardName;
-  cardElement.querySelector('.element__image-btn').addEventListener('click', showCard);
-  cardElement.querySelector('.element__delete-urn').addEventListener('click', deleteCard);
-  cardElement.querySelector('.element__like').addEventListener('click', likeCard);
-  return cardElement;
-}
+// function createCard(cardName, cardLink) {
+// const elementsTemplate = document.querySelector('.elem').content;
+// const cardElement = elementsTemplate.cloneNode(true);
+// cardElement.querySelector('.element__image').src = cardLink;
+// cardElement.querySelector('.element__image').alt = cardName;
+// cardElement.querySelector('.element__title').textContent = cardName;
+// cardElement.querySelector('.element__image-btn').addEventListener('click', showCard);
+// cardElement.querySelector('.element__delete-urn').addEventListener('click', deleteCard);
+// cardElement.querySelector('.element__like').addEventListener('click', likeCard);
+//   return cardElement;
+// }
 
 // Лайк этой карточке
 
