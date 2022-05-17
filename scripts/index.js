@@ -2,6 +2,10 @@
 import { Card } from "./Card.js";
 import { FormValidator, params } from './FormValidator.js';
 
+const formValidator = new FormValidator(params);
+formValidator.enableValidation(params);
+
+
 const popup = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile');
 const newSpaceElement = document.querySelector('.popup_new-space');
@@ -52,9 +56,9 @@ function addTextFromProfile() {
   buttonElement.removeAttribute('disabled');
   const formElement = document.querySelector('.popup__form');
   const inputList = Array.from(formElement.querySelectorAll(params.inputSelector));
-  // inputList.forEach((inputElement) => {
-  //   FormValidator._hideError(formElement, inputElement);
-  // });
+  inputList.forEach((inputElement) => {
+    _hideError(formElement, inputElement);
+  });
   openPopup(popupProfile);
 }
 
