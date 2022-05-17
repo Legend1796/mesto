@@ -2,10 +2,6 @@
 import { Card } from "./Card.js";
 import { FormValidator, params } from './FormValidator.js';
 
-const formValidator = new FormValidator(params);
-formValidator.enableValidation(params);
-
-
 const popup = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile');
 const newSpaceElement = document.querySelector('.popup_new-space');
@@ -16,8 +12,6 @@ const userJob = document.querySelector('.profile__job');
 const cardNameInput = document.querySelector('.popup__input_type_name-space');
 const cardLinkInput = document.querySelector('.popup__input_type_link-space');
 const cardList = document.querySelector('.elements');
-
-// FormValidator.enableValidation;
 
 function closePopupOnEsc(evt) {
   if (evt.key === 'Escape') {
@@ -44,10 +38,8 @@ function closePopup(popup) {
   document.removeEventListener('keydown', closePopupOnEsc);
 }
 
-// Открытие попапа профиля
 document.querySelector('.profile__edit-btn').addEventListener('click', addTextFromProfile);
 
-// Функция добавления инпутам текста из профиля + разблокировка кнопки сохранения + очистка ошибок
 function addTextFromProfile() {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
@@ -57,26 +49,24 @@ function addTextFromProfile() {
   const formElement = document.querySelector('.popup__form');
   const inputList = Array.from(formElement.querySelectorAll(params.inputSelector));
   inputList.forEach((inputElement) => {
-    _hideError(formElement, inputElement);
+    const formValidator = new FormValidator(params);
+    formValidator.enableValidation(params);
+    formValidator._hideError(formElement, inputElement);
   });
   openPopup(popupProfile);
 }
 
-// Сохранение изменений профиля
-popupProfile.addEventListener('submit', function (evt) {
+popupProfile.addEventListener('submit', (evt) => {
   evt.preventDefault();
   userName.textContent = nameInput.value;
   userJob.textContent = jobInput.value;
   closePopup(popupProfile);
 });
 
-// Открытие попапа места
 document.querySelector('.profile__add-btn').addEventListener('click', () => openPopup(newSpaceElement));
 
-// // Добавление нового места
 newSpaceElement.addEventListener('submit', handleAddCardFormSubmit);
 
-//Добавляем карточку вручную + делаем кнопку сохранения неактивной
 export function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
   const cardName = cardNameInput.value;

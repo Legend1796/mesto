@@ -1,6 +1,3 @@
-// включение валидации вызовом enableValidation
-// все настройки передаются при вызове
-
 export const params = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -25,13 +22,12 @@ export class FormValidator {
     const buttonElement = formElement.querySelector(params.submitButtonSelector);
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
-        console.log('input');
         this._checkInputValidity(formElement, inputElement);
         this._toggleButtonState(inputList, buttonElement);
       });
     });
   }
-  // Функция добавляет или удаляет класс неактивной кнопки в зависимости от валидности инпутов
+
   _toggleButtonState = (inputList, buttonElement) => {
     if (this._hasInvalidInput(inputList)) {
       buttonElement.classList.add(params.inactiveButtonClass);
@@ -41,29 +37,28 @@ export class FormValidator {
       buttonElement.removeAttribute('disabled');
     }
   };
-  // Функция принимает массив полей и ищет хотя бы одно поле, которое не прошло валидацию
+
   _hasInvalidInput = (inputList) => {
     return inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     })
   };
-  // Функция, которая проверяет валидность поля
+
   _checkInputValidity = (formElement, inputElement) => {
-    console.log('_checkInputValidity');
     if (!inputElement.validity.valid) {
       this._showError(formElement, inputElement, inputElement.validationMessage);
     } else {
       this._hideError(formElement, inputElement);
     }
   };
-  // Функция, которая добавляет класс с ошибкой
+
   _showError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add(params.inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(params.errorClass);
   };
-  // Функция, которая удаляет класс с ошибкой
+
   _hideError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove(params.inputErrorClass);
@@ -72,7 +67,6 @@ export class FormValidator {
   };
 
   enableValidation(params) {
-    console.log('enableValidation');
     const formList = Array.from(document.querySelectorAll(params.formSelector));
     formList.forEach((formElement) => {
       formElement.addEventListener('submit', (evt) => {
@@ -83,4 +77,5 @@ export class FormValidator {
   }
 }
 
-
+const formValidator = new FormValidator(params);
+formValidator.enableValidation(params);
