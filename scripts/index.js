@@ -74,7 +74,6 @@ export function handleAddCardFormSubmit(evt) {
   const item = [];
   item.name = cardName;
   item.link = cardLink;
-  console.log(item);
   document.forms.mesto.reset();
   const card = new Card(item);
   const cardElement = card.renderCard();
