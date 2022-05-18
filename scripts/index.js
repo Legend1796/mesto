@@ -14,6 +14,7 @@ const userJob = document.querySelector('.profile__job');
 const cardNameInput = document.querySelector('.popup__input_type_name-space');
 const cardLinkInput = document.querySelector('.popup__input_type_link-space');
 const cardList = document.querySelector('.elements');
+const forms = document.querySelectorAll('.popup__form');
 
 function closePopupOnEsc(evt) {
   if (evt.key === 'Escape') {
@@ -45,16 +46,9 @@ document.querySelector('.profile__edit-btn').addEventListener('click', addTextFr
 function addTextFromProfile() {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
+  profileFormValidate.resetErrors();
   const buttonElement = popupProfile.querySelector('.popup__save-btn');
-  buttonElement.classList.remove('popup__save-btn_disabled');
-  buttonElement.removeAttribute('disabled');
-  const formElement = document.querySelector('.popup__form');
-  const inputList = Array.from(formElement.querySelectorAll(params.inputSelector));
-  inputList.forEach((inputElement) => {
-    const formValidator = new FormValidator(params, form);
-    formValidator.enableValidation(params);
-    formValidator._hideError(formElement, inputElement);
-  });
+  profileFormValidate.unblockButton(buttonElement);
   openPopup(popupProfile);
 }
 
@@ -79,8 +73,7 @@ export function handleAddCardFormSubmit(evt) {
   document.forms.mesto.reset();
   cardList.prepend(createNewCardclass(item))
   const buttonElement = newSpaceElement.querySelector('.popup__save-btn');
-  buttonElement.classList.add('popup__save-btn_disabled');
-  buttonElement.setAttribute('disabled', true);
+  profileFormValidate.blockButton(buttonElement);
   closePopup(newSpaceElement);
 };
 
@@ -95,7 +88,7 @@ function createNewCardclass(item) {
   return cardElement;
 }
 
-const formList = Array.from(document.querySelectorAll('.popup__form'));
+const formList = Array.from(forms);
 formList.forEach((form) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
@@ -103,5 +96,9 @@ formList.forEach((form) => {
   const formValidator = new FormValidator(params, form);
   formValidator.enableValidation();
 });
-// const formValidator = new FormValidator(params);
-// formValidator.enableValidation();
+
+const profileFormValidate = new FormValidator(params, document.querySelector('.popup__form_profile'));
+profileFormValidate.enableValidation();
+
+const cardFormValidate = new FormValidator(params, document.querySelector('.popup__form_card'));
+cardFormValidate.enableValidation();

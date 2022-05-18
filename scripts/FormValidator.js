@@ -2,7 +2,6 @@ import { params } from "./params.js";
 
 export class FormValidator {
   constructor(params, form) {
-    console.log(form);
     this._formSelector = form;
     this._inputSelector = params.inputSelector;
     this._submitButtonSelector = params.submitButtonSelector;
@@ -12,7 +11,6 @@ export class FormValidator {
   }
 
   _setEventListeners() {
-    console.log(this._inputSelector);
     const inputList = Array.from(this._formSelector.querySelectorAll(this._inputSelector));
     const buttonElement = this._formSelector.querySelector(this._submitButtonSelector);
     inputList.forEach((inputElement) => {
@@ -25,11 +23,11 @@ export class FormValidator {
 
   _toggleButtonState = (inputList, buttonElement) => {
     if (this._hasInvalidInput(inputList)) {
-      buttonElement.classList.add(params.inactiveButtonClass);
-      buttonElement.setAttribute('disabled', true);
+      this.blockButton(buttonElement);
+
     } else {
-      buttonElement.classList.remove(params.inactiveButtonClass);
-      buttonElement.removeAttribute('disabled');
+      this.unblockButton(buttonElement);
+
     }
   };
 
@@ -64,4 +62,23 @@ export class FormValidator {
   enableValidation() {
     this._setEventListeners();
   }
+
+  resetErrors() {
+    const inputList = Array.from(this._formSelector.querySelectorAll(this._inputSelector));
+    inputList.forEach((inputElement) => {
+      this._hideError(this._formSelector, inputElement);
+    });
+  }
+
+  blockButton(buttonElement) {
+    buttonElement.classList.add(params.inactiveButtonClass);
+    buttonElement.setAttribute('disabled', true);
+  }
+
+  unblockButton(buttonElement) {
+    buttonElement.classList.remove(params.inactiveButtonClass);
+    buttonElement.removeAttribute('disabled');
+  }
+
+
 }
