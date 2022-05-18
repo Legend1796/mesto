@@ -76,7 +76,7 @@ export function handleAddCardFormSubmit(evt) {
   item.name = cardName;
   item.link = cardLink;
   document.forms.mesto.reset();
-  const card = new Card(item);
+  const card = new Card(item, '.elem');
   const cardElement = card.renderCard();
   cardList.prepend(cardElement)
   const buttonElement = newSpaceElement.querySelector('.popup__save-btn');
@@ -86,7 +86,7 @@ export function handleAddCardFormSubmit(evt) {
 };
 
 initialCards.forEach((item) => {
-  const card = new Card(item);
+  const card = new Card(item, '.elem');
   const cardElement = card.renderCard();
   document.querySelector('.elements').append(cardElement);
 });
