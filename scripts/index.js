@@ -1,6 +1,7 @@
 // / импорт классов Card и FormValidator
 import { Card } from "./Card.js";
 import { FormValidator, params } from './FormValidator.js';
+import { initialCards } from "./initialCards.js";
 
 const popup = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile');
@@ -83,3 +84,9 @@ export function handleAddCardFormSubmit(evt) {
   buttonElement.setAttribute('disabled', true);
   closePopup(newSpaceElement);
 };
+
+initialCards.forEach((item) => {
+  const card = new Card(item);
+  const cardElement = card.renderCard();
+  document.querySelector('.elements').append(cardElement);
+});
