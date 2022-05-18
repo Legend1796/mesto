@@ -1,7 +1,8 @@
 // / импорт классов Card и FormValidator
 import { Card } from "./Card.js";
-import { FormValidator, params } from './FormValidator.js';
+import { FormValidator } from './FormValidator.js';
 import { initialCards } from "./initialCards.js";
+import { params } from "./params.js";
 
 const popup = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile');
@@ -50,7 +51,7 @@ function addTextFromProfile() {
   const formElement = document.querySelector('.popup__form');
   const inputList = Array.from(formElement.querySelectorAll(params.inputSelector));
   inputList.forEach((inputElement) => {
-    const formValidator = new FormValidator(params);
+    const formValidator = new FormValidator(params, form);
     formValidator.enableValidation(params);
     formValidator._hideError(formElement, inputElement);
   });
@@ -72,13 +73,11 @@ export function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
   const cardName = cardNameInput.value;
   const cardLink = cardLinkInput.value;
-  const item = [];
+  const item = {};
   item.name = cardName;
   item.link = cardLink;
   document.forms.mesto.reset();
-  const card = new Card(item, '.elem');
-  const cardElement = card.renderCard();
-  cardList.prepend(cardElement)
+  cardList.prepend(createNewCardclass(item))
   const buttonElement = newSpaceElement.querySelector('.popup__save-btn');
   buttonElement.classList.add('popup__save-btn_disabled');
   buttonElement.setAttribute('disabled', true);
@@ -86,7 +85,23 @@ export function handleAddCardFormSubmit(evt) {
 };
 
 initialCards.forEach((item) => {
+
+  document.querySelector('.elements').append(createNewCardclass(item));
+});
+
+function createNewCardclass(item) {
   const card = new Card(item, '.elem');
   const cardElement = card.renderCard();
-  document.querySelector('.elements').append(cardElement);
+  return cardElement;
+}
+
+const formList = Array.from(document.querySelectorAll('.popup__form'));
+formList.forEach((form) => {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+  });
+  const formValidator = new FormValidator(params, form);
+  formValidator.enableValidation();
 });
+// const formValidator = new FormValidator(params);
+// formValidator.enableValidation();

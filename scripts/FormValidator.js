@@ -1,15 +1,9 @@
-export const params = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-btn',
-  inactiveButtonClass: 'popup__save-btn_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active'
-}
+import { params } from "./params.js";
 
 export class FormValidator {
-  constructor(params) {
-    this._formSelector = params.formSelector;
+  constructor(params, form) {
+    console.log(form);
+    this._formSelector = form;
     this._inputSelector = params.inputSelector;
     this._submitButtonSelector = params.submitButtonSelector;
     this._inactiveButtonClass = params.inactiveButtonClass;
@@ -17,12 +11,13 @@ export class FormValidator {
     this._errorClass = params.errorClass;
   }
 
-  _setEventListeners(formElement) {
-    const inputList = Array.from(formElement.querySelectorAll(params.inputSelector));
-    const buttonElement = formElement.querySelector(params.submitButtonSelector);
+  _setEventListeners() {
+    console.log(this._inputSelector);
+    const inputList = Array.from(this._formSelector.querySelectorAll(this._inputSelector));
+    const buttonElement = this._formSelector.querySelector(this._submitButtonSelector);
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
-        this._checkInputValidity(formElement, inputElement);
+        this._checkInputValidity(this._formSelector, inputElement);
         this._toggleButtonState(inputList, buttonElement);
       });
     });
@@ -66,16 +61,7 @@ export class FormValidator {
     errorElement.textContent = '';
   };
 
-  enableValidation(params) {
-    const formList = Array.from(document.querySelectorAll(params.formSelector));
-    formList.forEach((formElement) => {
-      formElement.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-      });
-      this._setEventListeners(formElement);
-    });
+  enableValidation() {
+    this._setEventListeners();
   }
 }
-
-const formValidator = new FormValidator(params);
-formValidator.enableValidation(params);
