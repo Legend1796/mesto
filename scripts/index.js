@@ -47,8 +47,7 @@ function addTextFromProfile() {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
   profileFormValidate.resetErrors();
-  const buttonElement = popupProfile.querySelector('.popup__save-btn');
-  profileFormValidate.unblockButton(buttonElement);
+  profileFormValidate.unblockButton();
   openPopup(popupProfile);
 }
 
@@ -72,8 +71,7 @@ export function handleAddCardFormSubmit(evt) {
   item.link = cardLink;
   document.forms.mesto.reset();
   cardList.prepend(createNewCardclass(item))
-  const buttonElement = newSpaceElement.querySelector('.popup__save-btn');
-  profileFormValidate.blockButton(buttonElement);
+  cardFormValidate.blockButton();
   closePopup(newSpaceElement);
 };
 
@@ -87,15 +85,6 @@ function createNewCardclass(item) {
   const cardElement = card.renderCard();
   return cardElement;
 }
-
-const formList = Array.from(forms);
-formList.forEach((form) => {
-  form.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-  });
-  const formValidator = new FormValidator(params, form);
-  formValidator.enableValidation();
-});
 
 const profileFormValidate = new FormValidator(params, document.querySelector('.popup__form_profile'));
 profileFormValidate.enableValidation();

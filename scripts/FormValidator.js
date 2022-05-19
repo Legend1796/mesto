@@ -8,31 +8,31 @@ export class FormValidator {
     this._inactiveButtonClass = params.inactiveButtonClass;
     this._inputErrorClass = params.inputErrorClass;
     this._errorClass = params.errorClass;
+    this.inputList = Array.from(this._formSelector.querySelectorAll(this._inputSelector));
+    this._buttonElement = this._formSelector.querySelector(this._submitButtonSelector);
   }
 
   _setEventListeners() {
-    const inputList = Array.from(this._formSelector.querySelectorAll(this._inputSelector));
-    const buttonElement = this._formSelector.querySelector(this._submitButtonSelector);
-    inputList.forEach((inputElement) => {
+    this.inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(this._formSelector, inputElement);
-        this._toggleButtonState(inputList, buttonElement);
+        this._toggleButtonState();
       });
     });
   }
 
-  _toggleButtonState = (inputList, buttonElement) => {
-    if (this._hasInvalidInput(inputList)) {
-      this.blockButton(buttonElement);
+  _toggleButtonState = () => {
+    if (this._hasInvalidInput()) {
+      this.blockButton();
 
     } else {
-      this.unblockButton(buttonElement);
+      this.unblockButton();
 
     }
   };
 
-  _hasInvalidInput = (inputList) => {
-    return inputList.some((inputElement) => {
+  _hasInvalidInput = () => {
+    return this.inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     })
   };
@@ -64,20 +64,20 @@ export class FormValidator {
   }
 
   resetErrors() {
-    const inputList = Array.from(this._formSelector.querySelectorAll(this._inputSelector));
-    inputList.forEach((inputElement) => {
+    this.inputList.forEach((inputElement) => {
       this._hideError(this._formSelector, inputElement);
     });
   }
 
-  blockButton(buttonElement) {
-    buttonElement.classList.add(params.inactiveButtonClass);
-    buttonElement.setAttribute('disabled', true);
+  blockButton() {
+    console.log(this._buttonElement);
+    this._buttonElement.classList.add(params.inactiveButtonClass);
+    this._buttonElement.setAttribute('disabled', true);
   }
 
-  unblockButton(buttonElement) {
-    buttonElement.classList.remove(params.inactiveButtonClass);
-    buttonElement.removeAttribute('disabled');
+  unblockButton() {
+    this._buttonElement.classList.remove(params.inactiveButtonClass);
+    this._buttonElement.removeAttribute('disabled');
   }
 
 
