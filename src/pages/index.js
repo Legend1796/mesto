@@ -1,6 +1,6 @@
-import './index.css';
+import '../pages/index.css';
 import { Card } from "../components/Card.js";
-import { FormValidator, params } from '../components/FormValidator.js.js';
+import { FormValidator, params } from '../components/FormValidator.js';
 
 const popup = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile');
