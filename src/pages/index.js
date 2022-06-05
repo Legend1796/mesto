@@ -33,17 +33,6 @@ popup.forEach((popupSelector) => {
   popup.setEventListeners();
 });
 
-
-// export function openPopup(popup) {
-//   popup.classList.add('popup_opened');
-//   document.addEventListener('keydown', closePopupOnEsc);
-// }
-
-// function closePopup(popup) {
-//   popup.classList.remove('popup_opened')
-//   document.removeEventListener('keydown', closePopupOnEsc);
-// }
-
 document.querySelector('.profile__edit-btn').addEventListener('click', addTextFromProfile);
 
 function addTextFromProfile() {
@@ -72,7 +61,10 @@ popupProfile.addEventListener('submit', (evt) => {
   popup.closePopup(popupProfile);
 });
 
-document.querySelector('.profile__add-btn').addEventListener('click', () => openPopup(newSpaceElement));
+document.querySelector('.profile__add-btn').addEventListener('click', () => {
+  const popup = new Popup(newSpaceElement);
+  popup.openPopup();
+});
 
 newSpaceElement.addEventListener('submit', handleAddCardFormSubmit);
 
@@ -90,6 +82,6 @@ export function handleAddCardFormSubmit(evt) {
   const buttonElement = newSpaceElement.querySelector('.popup__save-btn');
   buttonElement.classList.add('popup__save-btn_disabled');
   buttonElement.setAttribute('disabled', true);
-  const popup = new Popup(popupProfile);
-  popup.closePopup(popupProfile);
+  const popup = new Popup(newSpaceElement);
+  popup.closePopup(newSpaceElement);
 };
