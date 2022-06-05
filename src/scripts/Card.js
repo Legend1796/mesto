@@ -1,4 +1,4 @@
-import { openPopup } from '../pages/index.js';
+import { openPopup } from './index.js';
 
 export const initialCards = [
   {

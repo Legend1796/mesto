@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
+  <link rel="stylesheet" href="./pages/index.css">
 
   <title>Место</title>
 </head>
@@ -12,12 +12,12 @@
 <body>
   <div class="page">
     <header class="header">
-      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип сайта">
+      <img class="header__logo" src="./images/logo.svg" alt="Логотип сайта">
     </header>
     <main>
       <section class="profile">
         <div class="profile__info">
-          <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар">
+          <img class="profile__avatar" src="./images/avatar.jpg" alt="Логотип сайта">
           <div class="profile__block">
             <div class="profile__name-edit">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -92,7 +92,10 @@
         <h2 class="popup__title"></h2>
       </div>
     </div>
-    <!-- <script type="module" src="./scripts/index.js"></script> -->
+    <!-- подключен будет только index.js остальные импортируются в него -->
+    <!-- <script src="./scripts/Card.js"></script> -->
+    <!-- <script src="./scripts/FormValidator.js"></script> -->
+    <script type="module" src="./scripts/index.js"></script>
   </div>
 </body>
 
