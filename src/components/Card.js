@@ -1,4 +1,4 @@
-import { openPopup } from '../pages/index.js';
+// import { Popup } from '../components/Popup.js';
 
 export const initialCards = [
   {
@@ -49,7 +49,7 @@ export class Card {
       fullSizeImage.querySelector('.popup__image').src = cardLinkFull;
       fullSizeImage.querySelector('.popup__image').alt = cardNameFull;
       fullSizeImage.querySelector('.popup__title').textContent = cardNameFull;
-      openPopup(fullSizeImage);
+      // openPopup(fullSizeImage);
     });
   }
 
