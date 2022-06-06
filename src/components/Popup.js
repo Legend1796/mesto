@@ -1,12 +1,14 @@
 export class Popup {
   constructor(popupSelector) {
     this._popup = popupSelector;
+    this._handleEscClose = this._handleEscClose.bind(this);
+    this._closePopupOnOverlayAndButton = this._closePopupOnOverlayAndButton.bind(this);
   }
 
   _handleEscClose(evt) {
     if (evt.key === 'Escape') {
-      // this.closePopup(); Не работает по ескейп
-      // this._popup.classList.remove('popup_opened');
+      this.closePopup();
+      this._popup.classList.remove('popup_opened');
     }
   }
 
@@ -16,18 +18,17 @@ export class Popup {
   }
 
   closePopup() {
-    console.log('evt.key');
     this._popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', this._handleEscClose);
   }
 
   setEventListeners() {
-    this._popup.addEventListener('click', function (evt) {
-      if ((evt.target.className === 'popup__overlay') || (evt.target.className === 'popup__close')) {
-        this.closePopup;
-      }
-    });
-
+    this._popup.addEventListener('click', this._closePopupOnOverlayAndButton)
   }
 
+  _closePopupOnOverlayAndButton(evt) {
+    if ((evt.target.className === 'popup__overlay') || (evt.target.className === 'popup__close')) {
+      this.closePopup();
+    }
+  }
 }
