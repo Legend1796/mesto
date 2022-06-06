@@ -37,6 +37,11 @@ function addTextFromProfile() {
   const userInfo = new UserInfo(userName, userJob);
   userInfo.setUserInfo(userInfo.getUserInfo());
 
+
+
+
+
+
   // nameInput.value = userName.textContent;
   // jobInput.value = userJob.textContent;
   const buttonElement = popupProfile.querySelector('.popup__save-btn');

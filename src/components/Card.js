@@ -1,4 +1,4 @@
-// import { PopupWithImage } from "./PopupWithImage";
+import { PopupWithImage } from "./PopupWithImage";
 
 export const initialCards = [
   {
@@ -37,7 +37,6 @@ export class Card {
 
   _getTemplate() {
     const cardElement = document.querySelector('.elem').content.querySelector('.element').cloneNode(true);
-    console.log(cardElement);
     return cardElement;
   }
 
@@ -46,13 +45,14 @@ export class Card {
     this._element.querySelector('.element__like').addEventListener('click', (evt) => evt.target.classList.toggle('element__like_active'));
     this._element.querySelector('.element__image-btn').addEventListener('click', (evt) => {
       const fullSizeImage = document.querySelector('.popup_full-size');
-      const cardElementFull = evt.target.closest('.element');
-      const cardLinkFull = cardElementFull.querySelector('.element__image').src;
-      const cardNameFull = cardElementFull.querySelector('.element__title').textContent;
-      fullSizeImage.querySelector('.popup__image').src = cardLinkFull;
-      fullSizeImage.querySelector('.popup__image').alt = cardNameFull;
-      fullSizeImage.querySelector('.popup__title').textContent = cardNameFull;
-      // PopupWithImage.openPopup(fullSizeImage);
+      // const cardElementFull = evt.target.closest('.element');
+      // const cardLinkFull = cardElementFull.querySelector('.element__image').src;
+      // const cardNameFull = cardElementFull.querySelector('.element__title').textContent;
+      fullSizeImage.querySelector('.popup__image').src = this._link;
+      fullSizeImage.querySelector('.popup__image').alt = this._name;
+      fullSizeImage.querySelector('.popup__title').textContent = this._name;
+      const popupWithImage = new PopupWithImage(fullSizeImage);
+      popupWithImage.openPopup(this._name, this._link);
     });
   }
 
