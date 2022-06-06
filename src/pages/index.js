@@ -4,6 +4,7 @@ import { FormValidator, params } from '../components/FormValidator.js';
 import { Popup } from '../components/Popup';
 import { Section } from '../components/Section';
 import { UserInfo } from '../components/UserInfo';
+import { PopupWithForm } from '../components/PopupWithForm';
 
 const popup = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile');
@@ -21,6 +22,11 @@ popup.forEach((popupSelector) => {
   popup.setEventListeners();
 });
 
+document.querySelector('.profile__add-btn').addEventListener('click', () => {
+  const popup = new Popup(newSpaceElement);
+  popup.openPopup();
+});
+
 const section = new Section({
   items: initialCards,
   renderer: (item) => {
@@ -32,6 +38,23 @@ const section = new Section({
 section.renderItems();
 
 document.querySelector('.profile__edit-btn').addEventListener('click', addTextFromProfile);
+// newSpaceElement.addEventListener('submit', handleAddCardFormSubmit);
+
+
+
+
+const popupWithForm = new PopupWithForm(newSpaceElement, {
+  submitHendler: (item) => {
+    section.addtItemNewCard(createCardElement(item));
+  }
+});
+popupWithForm.setEventListeners();
+
+
+
+
+
+
 
 function addTextFromProfile() {
   const userInfo = new UserInfo(userName, userJob);
@@ -66,30 +89,27 @@ function addTextFromProfile() {
 //   popup.closePopup(popupProfile);
 // });
 
-document.querySelector('.profile__add-btn').addEventListener('click', () => {
-  const popup = new Popup(newSpaceElement);
-  popup.openPopup();
-});
 
-newSpaceElement.addEventListener('submit', handleAddCardFormSubmit);
 
-export function handleAddCardFormSubmit(evt) {
-  evt.preventDefault();
-  const cardName = cardNameInput.value;
-  const cardLink = cardLinkInput.value;
-  const item = [];
-  item.name = cardName;
-  item.link = cardLink;
-  document.forms.mesto.reset();
-  const card = new Card(item);
-  const cardElement = card.renderCard();
-  cardList.prepend(cardElement)
-  const buttonElement = newSpaceElement.querySelector('.popup__save-btn');
-  buttonElement.classList.add('popup__save-btn_disabled');
-  buttonElement.setAttribute('disabled', true);
-  const popup = new Popup(newSpaceElement);
-  popup.closePopup(newSpaceElement);
-};
+
+
+// export function handleAddCardFormSubmit(evt) {
+//   evt.preventDefault();
+//   const cardName = cardNameInput.value;
+//   const cardLink = cardLinkInput.value;
+//   const item = [];
+//   item.name = cardName;
+//   item.link = cardLink;
+//   document.forms.mesto.reset();
+//   const card = new Card(item);
+//   const cardElement = card.renderCard();
+//   cardList.prepend(cardElement)
+//   const buttonElement = newSpaceElement.querySelector('.popup__save-btn');
+//   buttonElement.classList.add('popup__save-btn_disabled');
+//   buttonElement.setAttribute('disabled', true);
+//   const popup = new Popup(newSpaceElement);
+//   popup.closePopup(newSpaceElement);
+// };
 
 
 

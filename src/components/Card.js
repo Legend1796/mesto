@@ -45,6 +45,7 @@ export class Card {
     this._element.querySelector('.element__image-btn').addEventListener('click', () => {
       const fullSizeImage = document.querySelector('.popup_full-size');
       const popupWithImage = new PopupWithImage(fullSizeImage);
+      //Сделайте так, чтобы Card принимал в конструктор функцию handleCardClick. Эта функция должна открывать попап с картинкой при клике на карточку.
       popupWithImage.openPopup(this._name, this._link);
     });
   }
