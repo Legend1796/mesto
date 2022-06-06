@@ -1,7 +1,9 @@
 import '../pages/index.css';
 import { Card } from "../components/Card.js";
-import { FormValidator, params } from '../components/FormValidator.js';
+// import { FormValidator, params } from '../components/FormValidator.js';
 import { Popup } from '../components/Popup';
+// import { Section } from '../components/Section';
+import { UserInfo } from '../components/UserInfo';
 
 const popup = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile');
@@ -14,20 +16,6 @@ const cardNameInput = document.querySelector('.popup__input_type_name-space');
 const cardLinkInput = document.querySelector('.popup__input_type_link-space');
 const cardList = document.querySelector('.elements');
 
-// function closePopupOnEsc(evt) {
-//   if (evt.key === 'Escape') {
-//     const popupOpened = document.querySelector('.popup_opened')
-//     closePopup(popupOpened);
-//   }
-// }
-
-// popup.forEch((popup) => {
-// popup.addEventListener('click', function (evt) {
-//   if ((evt.target.className === 'popup__overlay') || (evt.target.className === 'popup__close')) {
-//     closePopup(popup);
-//   }
-// });
-// });
 popup.forEach((popupSelector) => {
   const popup = new Popup(popupSelector);
   popup.setEventListeners();
@@ -36,8 +24,11 @@ popup.forEach((popupSelector) => {
 document.querySelector('.profile__edit-btn').addEventListener('click', addTextFromProfile);
 
 function addTextFromProfile() {
-  nameInput.value = userName.textContent;
-  jobInput.value = userJob.textContent;
+  const userInfo = new UserInfo(userName, userJob);
+  userInfo.setUserInfo(userInfo.getUserInfo());
+
+  // nameInput.value = userName.textContent;
+  // jobInput.value = userJob.textContent;
   const buttonElement = popupProfile.querySelector('.popup__save-btn');
   buttonElement.classList.remove('popup__save-btn_disabled');
   buttonElement.removeAttribute('disabled');
@@ -48,18 +39,17 @@ function addTextFromProfile() {
     formValidator.enableValidation(params);
     formValidator._hideError(formElement, inputElement);
   });
-  console.log(popupProfile);
   const popup = new Popup(popupProfile);
   popup.openPopup();
 }
 
-popupProfile.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  userName.textContent = nameInput.value;
-  userJob.textContent = jobInput.value;
-  const popup = new Popup(popupProfile);
-  popup.closePopup(popupProfile);
-});
+// popupProfile.addEventListener('submit', (evt) => {
+//   evt.preventDefault();
+//   userName.textContent = nameInput.value;
+//   userJob.textContent = jobInput.value;
+//   const popup = new Popup(popupProfile);
+//   popup.closePopup(popupProfile);
+// });
 
 document.querySelector('.profile__add-btn').addEventListener('click', () => {
   const popup = new Popup(newSpaceElement);

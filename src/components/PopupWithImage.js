@@ -1,9 +1,10 @@
 import { Popup } from "./Popup";
 
 export class PopupWithImage extends Popup {
-  constructor(popupSelector) {
+  constructor(popupSelector, { data }) {
     super(popupSelector);
-    this.submitHendler = this.submitHendler;
+    this._name = name;
+    this._link = link;
 
   }
   openPopup() {
@@ -20,10 +21,6 @@ export class PopupWithImage extends Popup {
 
     super.closePopup();
   }
-  setEventListener() {
-    this._popup.addEventListener('submit', () => {
-      this.submitHendler()
-    })
-  }
+
 
 }

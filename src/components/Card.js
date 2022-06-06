@@ -1,4 +1,4 @@
-import { Popup } from '../components/Popup.js';
+import { Popup } from './Popup.js';
 
 export const initialCards = [
   {
@@ -28,9 +28,9 @@ export const initialCards = [
 ];
 
 export class Card {
-  constructor(data) {
-    this._name = data.name;
-    this._link = data.link;
+  constructor({ name, link }) {
+    this._name = name;
+    this._link = link;
   }
 
   _getTemplate() {

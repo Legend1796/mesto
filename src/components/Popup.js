@@ -31,4 +31,9 @@ export class Popup {
       this.closePopup();
     }
   }
+
+  handleCardClick() {
+    openPopup();
+  }
+
 }
