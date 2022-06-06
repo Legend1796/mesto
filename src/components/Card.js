@@ -1,4 +1,4 @@
-import { Popup } from './Popup.js';
+// import { PopupWithImage } from "./PopupWithImage";
 
 export const initialCards = [
   {
@@ -27,14 +27,17 @@ export const initialCards = [
   }
 ];
 
+
 export class Card {
-  constructor({ name, link }) {
+  constructor({ name, link }, handleCardClick) {
     this._name = name;
     this._link = link;
+    this._hahandleCardClick = handleCardClick;
   }
 
   _getTemplate() {
     const cardElement = document.querySelector('.elem').content.querySelector('.element').cloneNode(true);
+    console.log(cardElement);
     return cardElement;
   }
 
@@ -49,7 +52,7 @@ export class Card {
       fullSizeImage.querySelector('.popup__image').src = cardLinkFull;
       fullSizeImage.querySelector('.popup__image').alt = cardNameFull;
       fullSizeImage.querySelector('.popup__title').textContent = cardNameFull;
-      // openPopup(fullSizeImage);
+      // PopupWithImage.openPopup(fullSizeImage);
     });
   }
 
@@ -62,9 +65,3 @@ export class Card {
     return this._element;
   }
 }
-
-initialCards.forEach((item) => {
-  const card = new Card(item);
-  const cardElement = card.renderCard();
-  document.querySelector('.elements').append(cardElement);
-});

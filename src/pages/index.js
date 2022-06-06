@@ -1,8 +1,8 @@
 import '../pages/index.css';
-import { Card } from "../components/Card.js";
-// import { FormValidator, params } from '../components/FormValidator.js';
+import { Card, initialCards } from "../components/Card.js";
+import { FormValidator, params } from '../components/FormValidator.js';
 import { Popup } from '../components/Popup';
-// import { Section } from '../components/Section';
+import { Section } from '../components/Section';
 import { UserInfo } from '../components/UserInfo';
 
 const popup = document.querySelectorAll('.popup');
@@ -20,6 +20,16 @@ popup.forEach((popupSelector) => {
   const popup = new Popup(popupSelector);
   popup.setEventListeners();
 });
+
+const section = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item);
+    const cardElement = card.renderCard();
+    section.addtItem(cardElement);
+  }
+}, cardList);
+section.renderItems();
 
 document.querySelector('.profile__edit-btn').addEventListener('click', addTextFromProfile);
 
@@ -75,3 +85,7 @@ export function handleAddCardFormSubmit(evt) {
   const popup = new Popup(newSpaceElement);
   popup.closePopup(newSpaceElement);
 };
+
+
+
+

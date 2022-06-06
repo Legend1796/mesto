@@ -1,29 +1,33 @@
 import { Popup } from "./Popup";
 
-export class PopupWithImage extends Popup {
+export class PopupWithForm extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
     this.submitHendler = this.submitHendler;
 
   }
-  openPopup() {
+  _getInputValues() {
+    //который собирает данные всех полей формы.
 
 
 
 
-    super.openPopup();
   }
 
+  setEventListeners() {
+
+    // // Перезаписывает родительский метод setEventListeners. Метод setEventListeners класса 
+    // PopupWithForm должен не только добавлять обработчик клика иконке закрытия, но и добавлять о
+    // бработчик сабмита формы.
+
+  }
+  // Перезаписывает родительский метод close, так как при закрытии попапа форма должна ещё и сбрасываться.++++++++
   closePopup() {
-
-
-
-    super.closePopup();
+    document.forms.mesto.reset();
+    Popup.closePopup();
   }
-  setEventListener() {
-    this._popup.addEventListener('submit', () => {
-      this.submitHendler()
-    })
-  }
+
 
 }
+
+
