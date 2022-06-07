@@ -10,9 +10,7 @@ export class UserInfo {
     }
   }
   setUserInfo(userData) {
-    console.log(userData);
     this._userName.textContent = userData.name;
     this._userJob.textContent = userData.job;
-    // осталось добавить на страницу в инпуты
   }
 }

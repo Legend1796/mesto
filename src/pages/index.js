@@ -5,6 +5,7 @@ import { Popup } from '../components/Popup';
 import { Section } from '../components/Section';
 import { UserInfo } from '../components/UserInfo';
 import { PopupWithForm } from '../components/PopupWithForm';
+import { PopupWithImage } from '../components/PopupWithImage';
 
 const popup = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile');
@@ -13,60 +14,52 @@ const nameInput = popupProfile.querySelector('.popup__input_type_name');
 const jobInput = popupProfile.querySelector('.popup__input_type_job');
 const userName = document.querySelector('.profile__name');
 const userJob = document.querySelector('.profile__job');
-const cardNameInput = document.querySelector('.popup__input_type_name-space');
-const cardLinkInput = document.querySelector('.popup__input_type_link-space');
 const cardList = document.querySelector('.elements');
+const fullSizeImage = document.querySelector('.popup_full-size');
 
 popup.forEach((popupSelector) => {
   const popup = new Popup(popupSelector);
   popup.setEventListeners();
 });
 
-document.querySelector('.profile__add-btn').addEventListener('click', () => {
-  const popup = new Popup(newSpaceElement);
-  popup.openPopup();
-});
-
 const section = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item);
-    const cardElement = card.renderCard();
-    section.addtItem(cardElement);
+    const card = new Card(item, (name, link) => {
+      const popupWithImage = new PopupWithImage(fullSizeImage);
+      popupWithImage.openPopup(name, link);
+    });
+    section.addtItem(card.renderCard());
   }
 }, cardList);
 section.renderItems();
 
-document.querySelector('.profile__edit-btn').addEventListener('click', addTextFromProfile);
-// newSpaceElement.addEventListener('submit', handleAddCardFormSubmit);
-
-
-
-
-const popupWithForm = new PopupWithForm(newSpaceElement, {
-  submitHendler: (item) => {
-    section.addtItemNewCard(createCardElement(item));
-  }
+document.querySelector('.profile__add-btn').addEventListener('click', () => {
+  const popupWithForm = new PopupWithForm(newSpaceElement, (newCardData) => {
+    const card = new Card(newCardData, (name, link) => {
+      const popupWithImage = new PopupWithImage(fullSizeImage);
+      popupWithImage.openPopup(name, link);
+    });
+    cardList.prepend(card.renderCard());
+  });
+  popupWithForm.setEventListeners();
+  const buttonElement = newSpaceElement.querySelector('.popup__save-btn');
+  buttonElement.classList.add('popup__save-btn_disabled');
+  buttonElement.setAttribute('disabled', true);
+  const popup = new Popup(newSpaceElement);
+  popup.openPopup();
 });
-popupWithForm.setEventListeners();
 
-
-
-
-
-
-
-function addTextFromProfile() {
+document.querySelector('.profile__edit-btn').addEventListener('click', () => {
   const userInfo = new UserInfo(userName, userJob);
-  userInfo.setUserInfo(userInfo.getUserInfo());
-
-
-
-
-
-
-  // nameInput.value = userName.textContent;
-  // jobInput.value = userJob.textContent;
+  const userData = userInfo.getUserInfo();
+  nameInput.value = userData.name;
+  jobInput.value = userData.job;
+  const popupWithForm = new PopupWithForm(popupProfile, ({ name, about }) => {
+    userName.textContent = name;
+    userJob.textContent = about;
+  });
+  popupWithForm.setEventListeners();
   const buttonElement = popupProfile.querySelector('.popup__save-btn');
   buttonElement.classList.remove('popup__save-btn_disabled');
   buttonElement.removeAttribute('disabled');
@@ -79,38 +72,4 @@ function addTextFromProfile() {
   });
   const popup = new Popup(popupProfile);
   popup.openPopup();
-}
-
-// popupProfile.addEventListener('submit', (evt) => {
-//   evt.preventDefault();
-//   userName.textContent = nameInput.value;
-//   userJob.textContent = jobInput.value;
-//   const popup = new Popup(popupProfile);
-//   popup.closePopup(popupProfile);
-// });
-
-
-
-
-
-// export function handleAddCardFormSubmit(evt) {
-//   evt.preventDefault();
-//   const cardName = cardNameInput.value;
-//   const cardLink = cardLinkInput.value;
-//   const item = [];
-//   item.name = cardName;
-//   item.link = cardLink;
-//   document.forms.mesto.reset();
-//   const card = new Card(item);
-//   const cardElement = card.renderCard();
-//   cardList.prepend(cardElement)
-//   const buttonElement = newSpaceElement.querySelector('.popup__save-btn');
-//   buttonElement.classList.add('popup__save-btn_disabled');
-//   buttonElement.setAttribute('disabled', true);
-//   const popup = new Popup(newSpaceElement);
-//   popup.closePopup(newSpaceElement);
-// };
-
-
-
-
+});
