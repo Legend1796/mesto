@@ -13,13 +13,16 @@ export class Popup {
   }
 
   openPopup() {
+    // console.log(this._popup);
     this._popup.classList.add('popup_opened');
     document.addEventListener('keydown', this._handleEscClose);
   }
 
   closePopup() {
-    this._popup.classList.remove('popup_opened');
+    // console.log(this._popup);
     document.removeEventListener('keydown', this._handleEscClose);
+    this._popup.classList.remove('popup_opened');
+
   }
 
   setEventListeners() {
