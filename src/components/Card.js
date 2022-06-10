@@ -17,11 +17,7 @@ export class Card {
     this._element.querySelector('.element__delete-urn').addEventListener('click', () => this._element.remove());
     this._element.querySelector('.element__like').addEventListener('click', toggleLikeCard);
     this._element.querySelector('.element__image-btn').addEventListener('click', () => {
-      const fullSizeImage = document.querySelector('.popup_full-size');
-      fullSizeImage.querySelector('.popup__image').src = this._link;
-      fullSizeImage.querySelector('.popup__image').alt = this._name;
-      fullSizeImage.querySelector('.popup__title').textContent = this._name;
-      // openPopup(fullSizeImage);
+      this._hahandleCardClick(this._name, this._link);
     });
   }
 

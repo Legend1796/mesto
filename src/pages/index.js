@@ -19,6 +19,7 @@ const userJob = document.querySelector('.profile__job');
 const cardNameInput = document.querySelector('.popup__input_type_name-space');
 const cardLinkInput = document.querySelector('.popup__input_type_link-space');
 const cardList = document.querySelector('.elements');
+const fullSizeImage = document.querySelector('.popup_full-size');
 const forms = document.querySelectorAll('.popup__form');
 
 // popup.forEach((popupSelector) => {
