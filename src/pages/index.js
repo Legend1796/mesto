@@ -40,49 +40,23 @@ const section = new Section({
 }, cardList);
 section.renderItems();
 
-
-
-// function closePopupOnEsc(evt) {
-//   if (evt.key === 'Escape') {
-//     const popupOpened = document.querySelector('.popup_opened')
-//     closePopup(popupOpened);
-//   }
-// }
-
-// popup.forEach((popup) => {
-//   popup.addEventListener('click', function (evt) {
-//     if ((evt.target.className === 'popup__overlay') || (evt.target.className === 'popup__close')) {
-//       closePopup(popup);
-//     }
-//   });
-// });
-
-// export function openPopup(popup) {
-//   popup.classList.add('popup_opened');
-//   document.addEventListener('keydown', closePopupOnEsc);
-// }
-
-// function closePopup(popup) {
-//   popup.classList.remove('popup_opened')
-//   document.removeEventListener('keydown', closePopupOnEsc);
-// }
-
 document.querySelector('.profile__edit-btn').addEventListener('click', addTextFromProfile);
 
 function addTextFromProfile() {
-  nameInput.value = userName.textContent;
-  jobInput.value = userJob.textContent;
+  const userInfo = new UserInfo(userName, userJob);
+  const userData = userInfo.getUserInfo();
+  nameInput.value = userData.name;
+  jobInput.value = userData.job;
+  const popupWithForm = new PopupWithForm(popupProfile, ({ name, about }) => {
+    userName.textContent = name;
+    userJob.textContent = about;
+  });
   profileFormValidate.resetErrors();
   profileFormValidate.unblockButton();
-  openPopup(popupProfile);
+  popupWithForm.setEventListeners();
+  const popup = new Popup(popupProfile);
+  popup.openPopup();
 }
-
-popupProfile.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  userName.textContent = nameInput.value;
-  userJob.textContent = jobInput.value;
-  closePopup(popupProfile);
-});
 
 document.querySelector('.profile__add-btn').addEventListener('click', () => openPopup(newSpaceElement));
 
