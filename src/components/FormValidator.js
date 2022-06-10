@@ -70,7 +70,6 @@ export class FormValidator {
   }
 
   blockButton() {
-    console.log(this._buttonElement);
     this._buttonElement.classList.add(params.inactiveButtonClass);
     this._buttonElement.setAttribute('disabled', true);
   }
