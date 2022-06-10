@@ -22,12 +22,6 @@ const cardList = document.querySelector('.elements');
 const fullSizeImage = document.querySelector('.popup_full-size');
 const forms = document.querySelectorAll('.popup__form');
 
-// popup.forEach((popupSelector) => {
-//   const popup = new Popup(popupSelector);
-//   popup.setEventListeners();
-// });
-
-//отрисовываем карточки
 const section = new Section({
   items: initialCards,
   renderer: (item) => {
@@ -58,22 +52,20 @@ function addTextFromProfile() {
   popup.openPopup();
 }
 
-document.querySelector('.profile__add-btn').addEventListener('click', () => openPopup(newSpaceElement));
+document.querySelector('.profile__add-btn').addEventListener('click', addNewCard);
 
-newSpaceElement.addEventListener('submit', handleAddCardFormSubmit);
-
-export function handleAddCardFormSubmit(evt) {
-  evt.preventDefault();
-  const cardName = cardNameInput.value;
-  const cardLink = cardLinkInput.value;
-  const item = {};
-  item.name = cardName;
-  item.link = cardLink;
-  document.forms.mesto.reset();
-  cardList.prepend(createNewCardclass(item))
-  cardFormValidate.blockButton();
-  closePopup(newSpaceElement);
-};
+function addNewCard() {
+  const popupWithForm = new PopupWithForm(newSpaceElement, (newCardData) => {
+    const card = new Card(newCardData, '.elem', (name, link) => {
+      const popupWithImage = new PopupWithImage(fullSizeImage);
+      popupWithImage.openPopup(name, link);
+    });
+    cardList.prepend(card.renderCard());
+  });
+  popupWithForm.setEventListeners();
+  const popup = new Popup(newSpaceElement);
+  popup.openPopup();
+}
 
 const profileFormValidate = new FormValidator(params, document.querySelector('.popup__form_profile'));
 profileFormValidate.enableValidation();
