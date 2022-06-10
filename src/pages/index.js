@@ -60,7 +60,9 @@ document.querySelector('.profile__add-btn').addEventListener('click', addNewCard
 
 function addNewCard() {
   const popupWithForm = new PopupWithForm(newSpaceElement, (newCardData) => {
+    console.log(newCardData);
     const card = new Card(newCardData, '.elem', (name, link) => {
+      console.log(newCardData);
       const popupWithImage = new PopupWithImage(fullSizeImage);
       popupWithImage.openPopup(name, link);
     });
