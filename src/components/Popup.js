@@ -27,7 +27,7 @@ export class Popup {
   }
 
   _closePopupOnOverlayAndButton(evt) {
-    if ((evt.target.className === 'popup__overlay') || (evt.target.className === 'popup__close')) {
+    if ((evt.target.classList.contains('popup')) || (evt.target.classList.contains('popup__close'))) {
       this.closePopup();
     }
   }
