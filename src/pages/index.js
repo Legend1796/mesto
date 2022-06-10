@@ -3,6 +3,11 @@ import { Card } from "../components/Card.js";
 import { FormValidator } from '../components/FormValidator.js';
 import { initialCards } from "../components/initialCards.js";
 import { params } from "../components/params.js";
+import { Section } from '../components/Section.js';
+import { UserInfo } from '../components/UserInfo';
+import { Popup } from '../components/Popup';
+import { PopupWithForm } from '../components/popupwithform';
+import { PopupWithImage } from '../components/popupwithimage';
 
 const popup = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile');
