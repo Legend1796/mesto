@@ -1,12 +1,13 @@
 import { Popup } from "./Popup";
 
 export class PopupWithForm extends Popup {
-  constructor(popupSelector, submitHendler) {
-    super(popupSelector);
+  constructor(popupElement, submitHendler) {
+    super(popupElement);
+    console.log('popupSelector:', popupElement);
     this._submitHendler = submitHendler;
+    this._inputList = this._popup.querySelectorAll('.popup__input');
   }
   _getInputValues() {
-    this._inputList = this._popup.querySelectorAll('.popup__input');
     this._formValues = {};
     this._inputList.forEach((input) => {
       this._formValues[input.name] = input.value;
@@ -18,13 +19,15 @@ export class PopupWithForm extends Popup {
     super.setEventListeners();
     this._popup.addEventListener('submit', (evt) => {
       evt.preventDefault();
+      console.log('form new', this.form);
       this._submitHendler(this._getInputValues());
       this.closePopup();
     });
   }
 
   closePopup() {
-    document.forms.mesto.reset();
+    console.log('form old', popupElement.forms.mesto);
+    popupElement.forms.mesto.reset();
     super.closePopup();
   }
 }

@@ -1,5 +1,3 @@
-import { params } from "./params.js";
-
 export class FormValidator {
   constructor(params, form) {
     this._form = form;
@@ -78,6 +76,4 @@ export class FormValidator {
     this._buttonElement.classList.remove(this._inactiveButtonClass);
     this._buttonElement.removeAttribute('disabled');
   }
-
-
 }

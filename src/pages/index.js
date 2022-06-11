@@ -9,7 +9,7 @@ import { Popup } from '../components/Popup';
 import { PopupWithForm } from '../components/popupwithform';
 import { PopupWithImage } from '../components/popupwithimage';
 
-const popup = document.querySelectorAll('.popup');
+// const popup = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile');
 const newSpaceElement = document.querySelector('.popup_new-space');
 const nameInput = popupProfile.querySelector('.popup__input_type_name');
@@ -21,10 +21,10 @@ const cardLinkInput = document.querySelector('.popup__input_type_link-space');
 const cardList = document.querySelector('.elements');
 const fullSizeImage = document.querySelector('.popup_full-size');
 
-popup.forEach((popupElement) => {
-  const popup = new Popup(popupElement);
-  popup.setEventListeners();
-});
+// popupList.forEach((popupElement) => {
+//   const popup = new Popup(popupElement);
+//   popup.setEventListeners();
+// });
 
 const section = new Section({
   items: initialCards,
@@ -53,6 +53,7 @@ function addTextFromProfile() {
   profileFormValidate.unblockButton();
   popupWithForm.setEventListeners();
   const popup = new Popup(popupProfile);
+  popup.setEventListeners();
   popup.openPopup();
 }
 
@@ -60,16 +61,16 @@ document.querySelector('.profile__add-btn').addEventListener('click', addNewCard
 
 function addNewCard() {
   const popupWithForm = new PopupWithForm(newSpaceElement, (newCardData) => {
-    console.log(newCardData);
     const card = new Card(newCardData, '.elem', (name, link) => {
-      console.log(newCardData);
       const popupWithImage = new PopupWithImage(fullSizeImage);
       popupWithImage.openPopup(name, link);
     });
     cardList.prepend(card.renderCard());
   });
+  profileFormValidate.resetErrors();
   popupWithForm.setEventListeners();
   const popup = new Popup(newSpaceElement);
+  popup.setEventListeners();
   popup.openPopup();
 }
 
