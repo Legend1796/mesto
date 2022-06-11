@@ -2,20 +2,20 @@ import { params } from "./params.js";
 
 export class FormValidator {
   constructor(params, form) {
-    this._formSelector = form;
+    this._form = form;
     this._inputSelector = params.inputSelector;
     this._submitButtonSelector = params.submitButtonSelector;
     this._inactiveButtonClass = params.inactiveButtonClass;
     this._inputErrorClass = params.inputErrorClass;
     this._errorClass = params.errorClass;
-    this.inputList = Array.from(this._formSelector.querySelectorAll(this._inputSelector));
-    this._buttonElement = this._formSelector.querySelector(this._submitButtonSelector);
+    this.inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
+    this._buttonElement = this._form.querySelector(this._submitButtonSelector);
   }
 
   _setEventListeners() {
     this.inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
-        this._checkInputValidity(this._formSelector, inputElement);
+        this._checkInputValidity(this._form, inputElement);
         this._toggleButtonState();
       });
     });
@@ -65,7 +65,7 @@ export class FormValidator {
 
   resetErrors() {
     this.inputList.forEach((inputElement) => {
-      this._hideError(this._formSelector, inputElement);
+      this._hideError(this._form, inputElement);
     });
   }
 
