@@ -21,8 +21,8 @@ const cardLinkInput = document.querySelector('.popup__input_type_link-space');
 const cardList = document.querySelector('.elements');
 const fullSizeImage = document.querySelector('.popup_full-size');
 
-popup.forEach((popupSelector) => {
-  const popup = new Popup(popupSelector);
+popup.forEach((popupElement) => {
+  const popup = new Popup(popupElement);
   popup.setEventListeners();
 });
 

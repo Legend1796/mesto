@@ -3,7 +3,7 @@ export class Card {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
-    this._hahandleCardClick = handleCardClick;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -15,7 +15,7 @@ export class Card {
     this._element.querySelector('.element__delete-urn').addEventListener('click', this._removeCard.bind(this));
     this._element.querySelector('.element__like').addEventListener('click', toggleLikeCard);
     this._element.querySelector('.element__image-btn').addEventListener('click', () => {
-      this._hahandleCardClick(this._name, this._link);
+      this._handleCardClick(this._name, this._link);
     });
   }
 

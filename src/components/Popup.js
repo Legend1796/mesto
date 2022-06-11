@@ -1,6 +1,6 @@
 export class Popup {
-  constructor(popupSelector) {
-    this._popup = popupSelector;
+  constructor(popupElement) {
+    this._popup = popupElement;
     this._handleEscClose = this._handleEscClose.bind(this);
     this._closePopupOnOverlayAndButton = this._closePopupOnOverlayAndButton.bind(this);
   }
@@ -8,7 +8,6 @@ export class Popup {
   _handleEscClose(evt) {
     if (evt.key === 'Escape') {
       this.closePopup();
-      this._popup.classList.remove('popup_opened');
     }
   }
 
@@ -30,9 +29,5 @@ export class Popup {
     if ((evt.target.classList.contains('popup')) || (evt.target.classList.contains('popup__close'))) {
       this.closePopup();
     }
-  }
-
-  handleCardClick() {
-    openPopup();
   }
 }
