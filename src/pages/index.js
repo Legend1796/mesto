@@ -12,6 +12,7 @@ const popupInputName = document.querySelector('.popup__input_type_name');
 const popupInputJob = document.querySelector('.popup__input_type_job');
 
 const popupWithImage = new PopupWithImage('.popup_full-size');
+popupWithImage.setEventListeners();
 const userProfile = new UserInfo('.profile__name', '.profile__job');
 
 const section = new Section({
