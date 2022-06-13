@@ -18,13 +18,13 @@ const userProfile = new UserInfo('.profile__name', '.profile__job');
 const section = new Section({
   items: initialCards,
   renderer: (item) => {
-    section.addtItem(createCard(item).renderCard());
+    section.addtItem(createCard(item));
   }
 }, '.elements');
 section.renderItems();
 
 const popupWithFormCard = new PopupWithForm('.popup_new-space', (newCardData) => {
-  section.addtItemNewCard(createCard(newCardData).renderCard());
+  section.addtItemNewCard(createCard(newCardData));
 }, '.popup__form');
 popupWithFormCard.setEventListeners();
 
@@ -43,7 +43,7 @@ function createCard(item) {
   const card = new Card(item, '.elem', (name, link) => {
     popupWithImage.openPopup(name, link);
   });
-  return card;
+  return card.renderCard();
 }
 
 document.querySelector('.profile__edit-btn').addEventListener('click', () => {
