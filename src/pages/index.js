@@ -24,12 +24,12 @@ section.renderItems();
 
 const popupWithFormCard = new PopupWithForm('.popup_new-space', (newCardData) => {
   section.addtItemNewCard(createCard(newCardData).renderCard());
-});
+}, '.popup__form');
 popupWithFormCard.setEventListeners();
 
 const popupWithFormProfile = new PopupWithForm('.popup_profile', (newUserData) => {
   userProfile.setUserInfo(newUserData);
-});
+}, '.popup__form');
 popupWithFormProfile.setEventListeners();
 
 const profileFormValidate = new FormValidator(params, document.querySelector('.popup__form_profile'));
