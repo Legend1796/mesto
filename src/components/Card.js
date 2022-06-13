@@ -30,7 +30,6 @@ export class Card {
   }
 
   _removeCard() {
-    console.log(this._element);
     this._element.remove();
   }
 }
