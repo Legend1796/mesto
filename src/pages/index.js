@@ -8,6 +8,9 @@ import { UserInfo } from '../components/UserInfo';
 import { PopupWithForm } from '../components/popupwithform';
 import { PopupWithImage } from '../components/popupwithimage';
 
+const popupInputName = document.querySelector('.popup__input_type_name');
+const popupInputJob = document.querySelector('.popup__input_type_job');
+
 const popupWithImage = new PopupWithImage('.popup_full-size');
 const userProfile = new UserInfo('.profile__name', '.profile__job');
 
@@ -44,8 +47,8 @@ function createCard(item) {
 
 document.querySelector('.profile__edit-btn').addEventListener('click', () => {
   const userData = userProfile.getUserInfo();
-  document.querySelector('.popup__input_type_name').value = userData.name;
-  document.querySelector('.popup__input_type_job').value = userData.job;
+  popupInputName.value = userData.name;
+  popupInputJob.value = userData.job;
   profileFormValidate.resetErrors();
   profileFormValidate.unblockButton();
   popupWithFormProfile.openPopup();
