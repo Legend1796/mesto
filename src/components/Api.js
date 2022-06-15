@@ -32,4 +32,32 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       });
   }
+
+  setUserInfo(userData) {
+    return fetch(`${this._url}/users/me`, {
+      method: 'PATCH',
+      headers: {
+        authorization: `${this._authorization}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: userData.name,
+        about: userData.about
+      })
+    })
+  }
+  setInitialCards(newCardData) {
+    console.log(newCardData);
+    return fetch(`${this._url}/cards`, {
+      method: 'POST',
+      headers: {
+        authorization: `${this._authorization}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: newCardData.name,
+        link: newCardData.link
+      })
+    })
+  }
 }

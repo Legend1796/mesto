@@ -16,4 +16,3 @@ export class UserInfo {
     this._userAvatar.src = userData.avatar;
   }
 }
-

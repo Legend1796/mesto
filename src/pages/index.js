@@ -1,7 +1,6 @@
 import './index.css';
 import { Card } from "../components/Card.js";
 import { FormValidator } from '../components/FormValidator.js';
-import { initialCards } from "../utils/initialCards.js";
 import { params } from "../utils/params.js";
 import { Section } from '../components/Section.js';
 import { UserInfo } from '../components/UserInfo';
@@ -15,7 +14,6 @@ const userProfile = new UserInfo('.profile__name', '.profile__job', '.profile__a
 const popupWithImage = new PopupWithImage('.popup_full-size');
 popupWithImage.setEventListeners();
 
-
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-43',
   headers: {
@@ -24,35 +22,43 @@ const api = new Api({
   }
 });
 
-api.getInitialCards()
-  .then(cards => {
-    const section = new Section({
-      items: cards,
-      renderer: (item) => {
-        section.addtItem(createCard(item));
-      }
-    }, '.elements');
-    section.renderItems();
-  })
-  .catch((err) => {
-    alert(err);
-  })
+function getCardsFromServer() {
+  api.getInitialCards()
+    .then(cards => {
+      const section = new Section({
+        items: cards,
+        renderer: (item) => {
+          section.addtItem(createCard(item));
+        }
+      }, '.elements');
+      section.renderItems();
+    })
+    .catch((err) => {
+      alert(err);
+    })
+}
+getCardsFromServer();
 
-api.getUserInfo()
-  .then(info => {
-    userProfile.setUserInfo(info);
-  })
-
-
-
+function getUserInfoFromServer() {
+  api.getUserInfo()
+    .then(info => {
+      userProfile.setUserInfo(info);
+    })
+    .catch((err) => {
+      alert(err);
+    })
+}
+getUserInfoFromServer();
 
 const popupWithFormCard = new PopupWithForm('.popup_new-space', (newCardData) => {
-  section.addtItemNewCard(createCard(newCardData));
+  api.setInitialCards(newCardData);
+  getCardsFromServer();
 }, '.popup__form');
 popupWithFormCard.setEventListeners();
 
 const popupWithFormProfile = new PopupWithForm('.popup_profile', (newUserData) => {
-  userProfile.setUserInfo(newUserData);
+  api.setUserInfo(newUserData);
+  getUserInfoFromServer();
 }, '.popup__form');
 popupWithFormProfile.setEventListeners();
 
