@@ -45,6 +45,12 @@ export class Api {
         about: userData.about
       })
     })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
   }
   setInitialCards(newCardData) {
     console.log(newCardData);
@@ -59,5 +65,11 @@ export class Api {
         link: newCardData.link
       })
     })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
   }
 }
