@@ -1,7 +1,8 @@
 export class UserInfo {
-  constructor(userName, userJob) {
+  constructor(userName, userJob, userAvatar) {
     this._userName = document.querySelector(userName);
     this._userJob = document.querySelector(userJob);
+    this._userAvatar = document.querySelector(userAvatar);
   }
   getUserInfo() {
     return {
@@ -12,16 +13,7 @@ export class UserInfo {
   setUserInfo(userData) {
     this._userName.textContent = userData.name;
     this._userJob.textContent = userData.about;
-
-    fetch('https://mesto.nomoreparties.co/v1/cohort-43/cards', {
-      headers: {
-        authorization: 'f14e4888-1d0c-41bb-80a1-fc5f4ce8b4db'
-      }
-    })
-      .then(res => res.json())
-      .then((result) => {
-        console.log(result);
-      });
+    this._userAvatar.src = userData.avatar;
   }
 }
 
