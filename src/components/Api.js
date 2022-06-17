@@ -75,6 +75,7 @@ export class Api {
   }
 
   deleteCard(cardId) {
+    console.log(cardId);
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
@@ -93,6 +94,26 @@ export class Api {
   setAvatar(linkAvatar) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
+      headers: {
+        authorization: this._authorization,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        avatar: linkAvatar.link
+      })
+    })
+      .then(res => {
+        if (res.ok) {
+          console.log(res.ok)
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  }
+
+  addLike(_id) {
+    return fetch(`${this._url}/cards/${_id}/likes`, {
+      method: 'PUT',
       headers: {
         authorization: this._authorization,
         'Content-Type': 'application/json'

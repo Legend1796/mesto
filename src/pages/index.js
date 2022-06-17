@@ -23,12 +23,13 @@ const api = new Api({
 });
 
 const section = new Section({
-  renderer: (item) => {
-    section.addtItem(createCard(item));
+  renderer: (item, info) => {
+    section.addtItem(createCard(item, info));
   }
 }, '.elements');
 
 const popupWithFormDeleteCard = new PopupWithForm('.popup_delete-card', (cardId) => {
+  console.log(cardId);
   api.deleteCard(cardId)
     .then(() => {
       card.removeCard();
@@ -42,7 +43,13 @@ popupWithFormDeleteCard.setEventListeners();
 const popupWithFormeditAvatar = new PopupWithForm('.popup_edit-avatar', (linkAvatar) => {
   api.setAvatar(linkAvatar)
     .then(() => {
-      getUserInfoFromServer();
+      api.getUserInfo()
+        .then(info => {
+          userProfile.setUserInfo(info);
+        })
+        .catch((err) => {
+          alert(err);
+        })
     })
     .catch((err) => {
       console.log('popupWithFormeditAvatar:', err);
@@ -84,29 +91,35 @@ cardFormValidate.enableValidation();
 const avatarFormValidate = new FormValidator(params, document.querySelector('.popup__form_avatar'));
 avatarFormValidate.enableValidation();
 
-function createCard(item) {
-  // console.log(item);
+function createCard(item, info) {
+  // console.log(item.owner._id);
+
+  // console.log(info._id);
   const card = new Card(item, '.elem', (name, link) => {
     popupWithImage.openPopup(name, link);
-  }, () => popupWithFormDeleteCard.openPopup());
+  }, (cardId) => {
+    popupWithFormDeleteCard.openPopup();
+    popupWithFormDeleteCard.getCardId(cardId);
+
+  }, info);
   return card.renderCard();
 }
 
-function getCardsFromServer() {
+function getCardsFromServer(info) {
   api.getInitialCards()
-    .then(cards => {
-      section.renderItems(cards);
+    .then((cards) => {
+      section.renderItems(cards, info);
     })
     .catch((err) => {
-      alert(err);
+      console.log('getCardsFromServer:', err);
     })
 }
-getCardsFromServer();
 
 function getUserInfoFromServer() {
   api.getUserInfo()
     .then(info => {
       userProfile.setUserInfo(info);
+      getCardsFromServer(info);
     })
     .catch((err) => {
       alert(err);

@@ -10,6 +10,7 @@
   background-repeat: no-repeat;
   background-position: center;
   opacity: 1;
+  display: none;
 }
 
 .element__delete-urn:hover {
