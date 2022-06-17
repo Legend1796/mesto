@@ -22,33 +22,11 @@ const api = new Api({
   }
 });
 
-function getCardsFromServer() {
-  api.getInitialCards()
-    .then(cards => {
-      const section = new Section({
-        items: cards,
-        renderer: (item) => {
-          section.addtItem(createCard(item));
-        }
-      }, '.elements');
-      section.renderItems();
-    })
-    .catch((err) => {
-      alert(err);
-    })
-}
-getCardsFromServer();
-
-function getUserInfoFromServer() {
-  api.getUserInfo()
-    .then(info => {
-      userProfile.setUserInfo(info);
-    })
-    .catch((err) => {
-      alert(err);
-    })
-}
-getUserInfoFromServer();
+const section = new Section({
+  renderer: (item) => {
+    section.addtItem(createCard(item));
+  }
+}, '.elements');
 
 const popupWithFormDeleteCard = new PopupWithForm('.popup_delete-card', (cardId) => {
   api.deleteCard(cardId)
@@ -92,11 +70,35 @@ const cardFormValidate = new FormValidator(params, document.querySelector('.popu
 cardFormValidate.enableValidation();
 
 function createCard(item) {
+  console.log(item);
   const card = new Card(item, '.elem', (name, link) => {
     popupWithImage.openPopup(name, link);
   }, () => popupWithFormDeleteCard.openPopup());
+  console.log(item.likes.length);
   return card.renderCard();
 }
+
+function getCardsFromServer() {
+  api.getInitialCards()
+    .then(cards => {
+      section.renderItems(cards);
+    })
+    .catch((err) => {
+      alert(err);
+    })
+}
+getCardsFromServer();
+
+function getUserInfoFromServer() {
+  api.getUserInfo()
+    .then(info => {
+      userProfile.setUserInfo(info);
+    })
+    .catch((err) => {
+      alert(err);
+    })
+}
+getUserInfoFromServer();
 
 document.querySelector('.profile__edit-btn').addEventListener('click', () => {
   const userData = userProfile.getUserInfo();

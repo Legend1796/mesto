@@ -3,6 +3,7 @@ export class Card {
     this._name = item.name;
     this._link = item.link;
     this._id = item._id;
+    this._numberOfLikes = item.likes.length;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._deleteCardHendler = deleteCardHendler;
@@ -35,6 +36,7 @@ export class Card {
     this._elementImage.src = this._link;
     this._elementImage.alt = this._name;
     this._element.querySelector('.element__title').textContent = this._name;
+    this._element.querySelector('.element__count-likes').textContent = this._numberOfLikes;
     return this._element;
   }
 
