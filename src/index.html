@@ -90,6 +90,20 @@
       </div>
     </div>
 
+    <div class="popup popup_edit-avatar popup_opened">
+
+      <div class="popup__container">
+        <h2 class="popup__text popup__text_edit-avatar">Обновить аватар</h2>
+        <form name="mesto" class="popup__form popup__form_card" novalidate>
+          <input class="popup__input popup__input_type_link-space" id="url-input" type="url" name="link"
+            placeholder="Ссылка на картинку" required>
+          <span class="popup__input-error url-input-error"></span>
+          <button class="popup__save-btn popup__save-btn_disabled" type="submit" disabled>Создать</button>
+        </form>
+        <button class="popup__close" type="button" aria-label="Закрыть"></button>
+      </div>
+    </div>
+
     <div class="popup popup_delete-card">
 
       <div class="popup__container">
