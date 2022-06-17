@@ -50,6 +50,17 @@ function getUserInfoFromServer() {
 }
 getUserInfoFromServer();
 
+const popupWithFormDeleteCard = new PopupWithForm('.popup_delete-card', (cardId) => {
+  api.deleteCard(cardId)
+    .then(() => {
+      card.removeCard();
+    })
+    .catch((err) => {
+      alert(err);
+    })
+}, '.popup__form');
+popupWithFormDeleteCard.setEventListeners();
+
 const popupWithFormCard = new PopupWithForm('.popup_new-space', (newCardData) => {
   api.setInitialCards(newCardData)
     .then(() => {
@@ -59,7 +70,6 @@ const popupWithFormCard = new PopupWithForm('.popup_new-space', (newCardData) =>
     .catch((err) => {
       alert(err);
     })
-
 }, '.popup__form');
 popupWithFormCard.setEventListeners();
 
@@ -84,7 +94,7 @@ cardFormValidate.enableValidation();
 function createCard(item) {
   const card = new Card(item, '.elem', (name, link) => {
     popupWithImage.openPopup(name, link);
-  });
+  }, () => popupWithFormDeleteCard.openPopup());
   return card.renderCard();
 }
 

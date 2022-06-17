@@ -7,7 +7,7 @@ export class Api {
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       headers: {
-        authorization: `${this._authorization}`,
+        authorization: this._authorization,
         'Content-Type': 'application/json'
       }
     })
@@ -23,7 +23,7 @@ export class Api {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: {
-        authorization: `${this._authorization}`,
+        authorization: this._authorization,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -33,9 +33,7 @@ export class Api {
     })
       .then(res => {
         if (res.ok) {
-          console.log('setInitialCards:', res);
           return res.json();
-
         }
         return Promise.reject(`Ошибка: ${res.status}`);
       });
@@ -44,7 +42,7 @@ export class Api {
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
       headers: {
-        authorization: `${this._authorization}`
+        authorization: this._authorization
       }
     })
       .then(res => {
@@ -59,7 +57,7 @@ export class Api {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: {
-        authorization: `${this._authorization}`,
+        authorization: this._authorization,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -69,6 +67,22 @@ export class Api {
     })
       .then(res => {
         if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  }
+
+  deleteCard(cardId) {
+    return fetch(`${this._url}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._authorization
+      }
+    })
+      .then(res => {
+        if (res.ok) {
+          console.log(res.ok)
           return res.json();
         }
         return Promise.reject(`Ошибка: ${res.status}`);
