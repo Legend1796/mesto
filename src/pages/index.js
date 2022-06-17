@@ -51,14 +51,27 @@ function getUserInfoFromServer() {
 getUserInfoFromServer();
 
 const popupWithFormCard = new PopupWithForm('.popup_new-space', (newCardData) => {
-  api.setInitialCards(newCardData);
-  getCardsFromServer();
+  api.setInitialCards(newCardData)
+    .then(() => {
+      const container = document.querySelector('.elements');
+      container.prepend(createCard(newCardData));
+    })
+    .catch((err) => {
+      alert(err);
+    })
+
 }, '.popup__form');
 popupWithFormCard.setEventListeners();
 
 const popupWithFormProfile = new PopupWithForm('.popup_profile', (newUserData) => {
-  api.setUserInfo(newUserData);
-  getUserInfoFromServer();
+  api.setUserInfo(newUserData)
+    .then(() => {
+      getUserInfoFromServer();
+    })
+    .catch((err) => {
+      alert(err);
+    })
+
 }, '.popup__form');
 popupWithFormProfile.setEventListeners();
 

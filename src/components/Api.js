@@ -19,6 +19,28 @@ export class Api {
       });
   }
 
+  setInitialCards(newCardData) {
+    return fetch(`${this._url}/cards`, {
+      method: 'POST',
+      headers: {
+        authorization: `${this._authorization}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: newCardData.name,
+        link: newCardData.link
+      })
+    })
+      .then(res => {
+        if (res.ok) {
+          console.log('setInitialCards:', res);
+          return res.json();
+
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  }
+
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
       headers: {
@@ -52,24 +74,5 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       });
   }
-  setInitialCards(newCardData) {
-    console.log(newCardData);
-    return fetch(`${this._url}/cards`, {
-      method: 'POST',
-      headers: {
-        authorization: `${this._authorization}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: newCardData.name,
-        link: newCardData.link
-      })
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-      });
-  }
+
 }
