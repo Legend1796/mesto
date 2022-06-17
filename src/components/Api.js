@@ -20,6 +20,7 @@ export class Api {
   }
 
   setInitialCards(newCardData) {
+    console.log(newCardData);
     return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: {

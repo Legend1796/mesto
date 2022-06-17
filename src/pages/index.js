@@ -34,7 +34,7 @@ const popupWithFormDeleteCard = new PopupWithForm('.popup_delete-card', (cardId)
       card.removeCard();
     })
     .catch((err) => {
-      alert(err);
+      console.log('popupWithFormDeleteCard:', err);
     })
 }, '.popup__form');
 popupWithFormDeleteCard.setEventListeners();
@@ -45,7 +45,7 @@ const popupWithFormeditAvatar = new PopupWithForm('.popup_edit-avatar', (linkAva
       getUserInfoFromServer();
     })
     .catch((err) => {
-      alert(err);
+      console.log('popupWithFormeditAvatar:', err);
     })
 }, '.popup__form');
 popupWithFormeditAvatar.setEventListeners();
@@ -54,10 +54,11 @@ const popupWithFormCard = new PopupWithForm('.popup_new-space', (newCardData) =>
   api.setInitialCards(newCardData)
     .then(() => {
       const container = document.querySelector('.elements');
+      newCardData.likes = Array(0);
       container.prepend(createCard(newCardData));
     })
     .catch((err) => {
-      alert(err);
+      console.log('popupWithFormCard:', err);
     })
 }, '.popup__form');
 popupWithFormCard.setEventListeners();
@@ -68,7 +69,7 @@ const popupWithFormProfile = new PopupWithForm('.popup_profile', (newUserData) =
       getUserInfoFromServer();
     })
     .catch((err) => {
-      alert(err);
+      console.log('popupWithFormProfile:', err);
     })
 
 }, '.popup__form');
@@ -84,6 +85,7 @@ const avatarFormValidate = new FormValidator(params, document.querySelector('.po
 avatarFormValidate.enableValidation();
 
 function createCard(item) {
+  // console.log(item);
   const card = new Card(item, '.elem', (name, link) => {
     popupWithImage.openPopup(name, link);
   }, () => popupWithFormDeleteCard.openPopup());

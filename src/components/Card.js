@@ -30,6 +30,7 @@ export class Card {
   }
 
   renderCard() {
+    console.log(this._numberOfLikes);
     this._element = this._getTemplate();
     this._setEventListeners();
     this._elementImage = this._element.querySelector('.element__image');
