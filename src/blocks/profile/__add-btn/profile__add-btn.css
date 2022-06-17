@@ -14,12 +14,17 @@
   background-position: center;
   background-size: 22px;
   opacity: 1;
+  transition: opacity .2s linear;
 }
 
 .profile__add-btn:hover {
-  transition: opacity .2s linear;
   opacity: .6;
   cursor: pointer;
+}
+
+.profile__add-btn:not(:hover) {
+  opacity: 1;
+  cursor: default;
 }
 
 @media screen and (max-width: 605px) {
