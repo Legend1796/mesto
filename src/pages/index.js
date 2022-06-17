@@ -39,6 +39,17 @@ const popupWithFormDeleteCard = new PopupWithForm('.popup_delete-card', (cardId)
 }, '.popup__form');
 popupWithFormDeleteCard.setEventListeners();
 
+const popupWithFormeditAvatar = new PopupWithForm('.popup_edit-avatar', (linkAvatar) => {
+  api.setAvatar(linkAvatar)
+    .then(() => {
+      getUserInfoFromServer();
+    })
+    .catch((err) => {
+      alert(err);
+    })
+}, '.popup__form');
+popupWithFormeditAvatar.setEventListeners();
+
 const popupWithFormCard = new PopupWithForm('.popup_new-space', (newCardData) => {
   api.setInitialCards(newCardData)
     .then(() => {
@@ -69,12 +80,13 @@ profileFormValidate.enableValidation();
 const cardFormValidate = new FormValidator(params, document.querySelector('.popup__form_card'));
 cardFormValidate.enableValidation();
 
+const avatarFormValidate = new FormValidator(params, document.querySelector('.popup__form_avatar'));
+avatarFormValidate.enableValidation();
+
 function createCard(item) {
-  console.log(item);
   const card = new Card(item, '.elem', (name, link) => {
     popupWithImage.openPopup(name, link);
   }, () => popupWithFormDeleteCard.openPopup());
-  console.log(item.likes.length);
   return card.renderCard();
 }
 
@@ -99,6 +111,11 @@ function getUserInfoFromServer() {
     })
 }
 getUserInfoFromServer();
+
+document.querySelector('.profile__edit-avatar').addEventListener('click', () => {
+  popupWithFormeditAvatar.openPopup();
+})
+
 
 document.querySelector('.profile__edit-btn').addEventListener('click', () => {
   const userData = userProfile.getUserInfo();

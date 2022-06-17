@@ -16,9 +16,8 @@
     <main>
       <section class="profile">
         <div class="profile__info">
-          <button class="profile__edit-avatar" type="button" aria-label="Редактировать Аватар">
-            <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар">
-          </button>
+          <button class="profile__edit-avatar" type="button" aria-label="Редактировать Аватар"></button>
+          <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар">
           <div class="profile__block">
             <div class="profile__name-edit">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -90,15 +89,15 @@
       </div>
     </div>
 
-    <div class="popup popup_edit-avatar popup_opened">
+    <div class="popup popup_edit-avatar">
 
       <div class="popup__container">
         <h2 class="popup__text popup__text_edit-avatar">Обновить аватар</h2>
-        <form name="mesto" class="popup__form popup__form_card" novalidate>
+        <form name="avatar" class="popup__form popup__form_avatar" novalidate>
           <input class="popup__input popup__input_type_link-space" id="url-input" type="url" name="link"
-            placeholder="Ссылка на картинку" required>
+            placeholder="Ссылка на аватар" required>
           <span class="popup__input-error url-input-error"></span>
-          <button class="popup__save-btn popup__save-btn_disabled" type="submit" disabled>Создать</button>
+          <button class="popup__save-btn popup__save-btn_disabled" type="submit" disabled>Сохранить</button>
         </form>
         <button class="popup__close" type="button" aria-label="Закрыть"></button>
       </div>
@@ -108,7 +107,7 @@
 
       <div class="popup__container">
         <h2 class="popup__text popup__text_delete-container">Вы уверены?</h2>
-        <form name="mesto" class="popup__form popup__form_card" novalidate>
+        <form name="delete-mesto" class="popup__form popup__form_card" novalidate>
           <button class="popup__save-btn" type="submit">Да</button>
         </form>
         <button class="popup__close" type="button" aria-label="Закрыть"></button>

@@ -89,4 +89,24 @@ export class Api {
       });
   }
 
+  setAvatar(linkAvatar) {
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._authorization,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        avatar: linkAvatar.link
+      })
+    })
+      .then(res => {
+        if (res.ok) {
+          console.log(res.ok)
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  }
+
 }
