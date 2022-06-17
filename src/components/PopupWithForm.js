@@ -15,11 +15,6 @@ export class PopupWithForm extends Popup {
     return this._formValues;
   }
 
-  getCardId(cardId) {
-    this._formValues = cardId;
-    console.log('2', this._formValues);
-  }
-
   setEventListeners() {
     super.setEventListeners();
     this._popup.addEventListener('submit', (evt) => {

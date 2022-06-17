@@ -28,17 +28,18 @@ const section = new Section({
   }
 }, '.elements');
 
-const popupWithFormDeleteCard = new PopupWithForm('.popup_delete-card', (cardId) => {
-  console.log(cardId);
-  api.deleteCard(cardId)
-    .then(() => {
-      card.removeCard();
-    })
-    .catch((err) => {
-      console.log('popupWithFormDeleteCard:', err);
-    })
-}, '.popup__form');
-popupWithFormDeleteCard.setEventListeners();
+// посмотреть в чек листе там другой класс и новый скрипт
+// const popupWithFormDeleteCard = new PopupWithForm('.popup_delete-card', (cardId) => {
+//   console.log(cardId);
+//   api.deleteCard(cardId)
+//     .then(() => {
+//       card.removeCard();
+//     })
+//     .catch((err) => {
+//       console.log('popupWithFormDeleteCard:', err);
+//     })
+// }, '.popup__form');
+// popupWithFormDeleteCard.setEventListeners();
 
 const popupWithFormeditAvatar = new PopupWithForm('.popup_edit-avatar', (linkAvatar) => {
   api.setAvatar(linkAvatar)
@@ -92,14 +93,11 @@ const avatarFormValidate = new FormValidator(params, document.querySelector('.po
 avatarFormValidate.enableValidation();
 
 function createCard(item, info) {
-  // console.log(item.owner._id);
 
-  // console.log(info._id);
   const card = new Card(item, '.elem', (name, link) => {
     popupWithImage.openPopup(name, link);
   }, (cardId) => {
-    popupWithFormDeleteCard.openPopup();
-    popupWithFormDeleteCard.getCardId(cardId);
+    // popupWithFormDeleteCard.openPopup();
 
   }, info);
   return card.renderCard();
