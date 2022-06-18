@@ -30,7 +30,6 @@ const section = new Section({
 }, '.elements');
 
 const popupWithConfirmation = new PopupWithConfirmation('.popup_delete-card', (cardId) => {
-  console.log('popupWithConfirmation:', cardId);
   api.deleteCard(cardId)
     .then(() => {
       // card.removeCard();
@@ -102,29 +101,33 @@ function createCard(item, info) {
     popupWithConfirmation.openPopup();
     popupWithConfirmation.getCardIdForDelete(cardId);
   }, info, (cardId, likes, userId) => {
-    console.log('likes:', likes, 'userId:', userId);
+    const allLikes = [];
     likes.forEach(like => {
-      if (like._id === userId) {
-        api.removeLike(cardId)
-          .then((res) => {
-            card.setNumberOfLikes(res.likes.length);
-            card.removeLikeCard();
-          })
-          .catch((err) => {
-            console.log('addLikeCard:', err);
-          })
-      }
-      else {
-        console.log('cardId:', cardId);
-        //   api.addLike(cardId)
-        //     .then(() => {
-        //       card.removeLikeCard();
-        //     })
-        //     .catch((err) => {
-        //       console.log('addLikeCard:', err);
-        //     })
-      }
-    });
+      allLikes.push(like._id);
+    })
+    const even = (elem) => elem === userId;
+    if (allLikes.some(even)) {
+      console.log(allLikes.some(even));
+      api.removeLike(cardId)
+        .then((res) => {
+          card.setNumberOfLikes(res.likes.length);
+          card.removeLikeCard();
+        })
+        .catch((err) => {
+          console.log('addLikeCard:', err);
+        })
+    } else {
+      console.log(allLikes.some(even));
+      api.addLike(cardId)
+        .then((res) => {
+          console.log(res);
+          card.setNumberOfLikes(res.likes.length);
+          card.addLikeCard();
+        })
+        .catch((err) => {
+          console.log('addLikeCard:', err);
+        })
+    }
   });
   return card.renderCard();
 }

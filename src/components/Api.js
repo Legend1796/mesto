@@ -119,7 +119,6 @@ export class Api {
     })
       .then(res => {
         if (res.ok) {
-          console.log(res.ok)
           return res.json();
         }
         return Promise.reject(`Ошибка: ${res.status}`);
@@ -136,7 +135,6 @@ export class Api {
     })
       .then(res => {
         if (res.ok) {
-          console.log(res.ok)
           return res.json();
         }
         return Promise.reject(`Ошибка: ${res.status}`);

@@ -27,6 +27,7 @@ export class Card {
       this._deleteCardHendler(this._getId());
     });
     this._element.querySelector('.element__like').addEventListener('click', () => {
+      console.log('click like');
       this._likeCardHandler(this._getId(), this._likes, this._userId);
     });
     this._element.querySelector('.element__image-btn').addEventListener('click', () => {
@@ -57,18 +58,15 @@ export class Card {
     this._element.querySelector('.element__count-likes').textContent = numberOfLikes;
   }
 
-
   removeCard() {
     this._element.remove();
   }
 
   addLikeCard() {
-    console.log(this._element.querySelector('.element__like'));
     this._element.querySelector('.element__like').classList.add('element__like_active');
   }
 
   removeLikeCard() {
-    console.log(this._element.querySelector('.element__like'));
     this._element.querySelector('.element__like').classList.remove('element__like_active');
   }
 
