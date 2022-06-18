@@ -44,14 +44,8 @@ popupWithConfirmation.setEventListeners();
 const popupWithFormeditAvatar = new PopupWithForm('.popup_edit-avatar', (linkAvatar) => {
   popupWithFormeditAvatar.renderButtonText('Сохранение...');
   api.setAvatar(linkAvatar)
-    .then(() => {
-      api.getUserInfo()
-        .then(info => {
-          userProfile.setUserInfo(info);
-        })
-        .catch((err) => {
-          alert(err);
-        })
+    .then((res) => {
+      userProfile.setUserInfo(res);
     })
     .catch((err) => {
       console.log('popupWithFormeditAvatar:', err);
@@ -88,8 +82,8 @@ popupWithFormCard.setEventListeners();
 const popupWithFormProfile = new PopupWithForm('.popup_profile', (newUserData) => {
   popupWithFormProfile.renderButtonText('Сохранение...');
   api.setUserInfo(newUserData)
-    .then(() => {
-      getUserInfoFromServer();
+    .then((res) => {
+      userProfile.setUserInfo(res);
     })
     .catch((err) => {
       console.log('popupWithFormProfile:', err);
@@ -102,41 +96,38 @@ const popupWithFormProfile = new PopupWithForm('.popup_profile', (newUserData) =
 popupWithFormProfile.setEventListeners();
 
 function createCard(item, info) {
-  // console.log(item.likes);
   const card = new Card(item, '.elem', (name, link) => {
     popupWithImage.openPopup(name, link);
   }, (cardId) => {
     popupWithConfirmation.openPopup();
     popupWithConfirmation.getCardIdForDelete(cardId);
-  }, info, (cardId) => toggleLikeCard(cardId));
+  }, info, (cardId, likes, userId) => {
+    console.log('likes:', likes, 'userId:', userId);
+    likes.forEach(like => {
+      if (like._id === userId) {
+        api.removeLike(cardId)
+          .then((res) => {
+            card.setNumberOfLikes(res.likes.length);
+            card.removeLikeCard();
+          })
+          .catch((err) => {
+            console.log('addLikeCard:', err);
+          })
+      }
+      else {
+        console.log('cardId:', cardId);
+        //   api.addLike(cardId)
+        //     .then(() => {
+        //       card.removeLikeCard();
+        //     })
+        //     .catch((err) => {
+        //       console.log('addLikeCard:', err);
+        //     })
+      }
+    });
+  });
   return card.renderCard();
 }
-
-function toggleLikeCard(cardId) {
-  console.log(cardId);
-
-  api.addLike(cardId)
-    .then(() => {
-      console.log('cardId');
-      // getUserInfoFromServer();
-    })
-    .catch((err) => {
-      console.log('addLikeCard:', err);
-    })
-
-  // api.removeLike(cardId)
-  //   .then(() => {
-  //     console.log('cardId');
-  //     // getUserInfoFromServer();
-  //   })
-  //   .catch((err) => {
-  //     console.log('addLikeCard:', err);
-  //   })
-}
-
-
-
-
 
 function getCardsFromServer(info) {
   api.getInitialCards()
