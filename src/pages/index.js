@@ -29,15 +29,7 @@ const section = new Section({
   }
 }, '.elements');
 
-const popupWithConfirmation = new PopupWithConfirmation('.popup_delete-card', (cardId) => {
-  api.deleteCard(cardId)
-    .then(() => {
-      // card.removeCard();
-    })
-    .catch((err) => {
-      console.log('popupWithFormDeleteCard:', err);
-    })
-});
+const popupWithConfirmation = new PopupWithConfirmation('.popup_delete-card');
 popupWithConfirmation.setEventListeners();
 
 const popupWithFormeditAvatar = new PopupWithForm('.popup_edit-avatar', (linkAvatar) => {
@@ -99,7 +91,15 @@ function createCard(item, info) {
     popupWithImage.openPopup(name, link);
   }, (cardId) => {
     popupWithConfirmation.openPopup();
-    popupWithConfirmation.getCardIdForDelete(cardId);
+    popupWithConfirmation.getCardIdForDelete(cardId, () => {
+      api.deleteCard(cardId)
+        .then(() => {
+          card.removeCard(cardId);
+        })
+        .catch((err) => {
+          console.log('popupWithFormDeleteCard:', err);
+        })
+    });
   }, info, (cardId, likes, userId) => {
     const allLikes = [];
     likes.forEach(like => {
@@ -107,7 +107,6 @@ function createCard(item, info) {
     })
     const even = (elem) => elem === userId;
     if (allLikes.some(even)) {
-      console.log(allLikes.some(even));
       api.removeLike(cardId)
         .then((res) => {
           card.setNumberOfLikes(res.likes.length);
@@ -117,7 +116,6 @@ function createCard(item, info) {
           console.log('addLikeCard:', err);
         })
     } else {
-      console.log(allLikes.some(even));
       api.addLike(cardId)
         .then((res) => {
           console.log(res);

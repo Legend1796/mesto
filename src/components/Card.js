@@ -27,7 +27,6 @@ export class Card {
       this._deleteCardHendler(this._getId());
     });
     this._element.querySelector('.element__like').addEventListener('click', () => {
-      console.log('click like');
       this._likeCardHandler(this._getId(), this._likes, this._userId);
     });
     this._element.querySelector('.element__image-btn').addEventListener('click', () => {
