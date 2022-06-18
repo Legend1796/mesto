@@ -20,7 +20,6 @@ export class Api {
   }
 
   setInitialCards(newCardData) {
-    console.log(newCardData);
     return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: {
@@ -75,7 +74,6 @@ export class Api {
   }
 
   deleteCard(cardId) {
-    console.log(cardId);
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
@@ -111,16 +109,30 @@ export class Api {
       });
   }
 
-  addLike(_id) {
-    return fetch(`${this._url}/cards/${_id}/likes`, {
+  addLike(cardId) {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
         authorization: this._authorization,
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        avatar: linkAvatar.link
-      })
+      }
+    })
+      .then(res => {
+        if (res.ok) {
+          console.log(res.ok)
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  }
+
+  removeLike(cardId) {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._authorization,
+        'Content-Type': 'application/json'
+      }
     })
       .then(res => {
         if (res.ok) {

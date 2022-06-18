@@ -15,6 +15,10 @@ export class PopupWithForm extends Popup {
     return this._formValues;
   }
 
+  renderButtonText(text) {
+    this._popup.querySelector('.popup__save-btn').textContent = text;
+  }
+
   setEventListeners() {
     super.setEventListeners();
     this._popup.addEventListener('submit', (evt) => {
@@ -33,5 +37,3 @@ export class PopupWithForm extends Popup {
     super.openPopup();
   }
 }
-
-
