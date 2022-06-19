@@ -2,17 +2,16 @@ export class Api {
   constructor(options) {
     this._url = options.baseUrl;
     this._authorization = options.headers.authorization;
+    this._headers = options.headers;
   }
 
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': 'application/json'
-      }
+      headers: this._headers
     })
       .then(res => {
         if (res.ok) {
+          console.log(this._headers);
           return res.json();
         }
         return Promise.reject(`Ошибка: ${res.status}`);
@@ -22,10 +21,7 @@ export class Api {
   setInitialCards(newCardData) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: newCardData.name,
         link: newCardData.link
@@ -41,9 +37,7 @@ export class Api {
 
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
-      headers: {
-        authorization: this._authorization
-      }
+      headers: this._headers
     })
       .then(res => {
         if (res.ok) {
@@ -56,10 +50,7 @@ export class Api {
   setUserInfo(userData) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: userData.name,
         about: userData.about
@@ -76,9 +67,7 @@ export class Api {
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: {
-        authorization: this._authorization
-      }
+      headers: this._headers
     })
       .then(res => {
         if (res.ok) {
@@ -92,10 +81,7 @@ export class Api {
   setAvatar(linkAvatar) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         avatar: linkAvatar.link
       })
@@ -112,10 +98,7 @@ export class Api {
   addLike(cardId) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'PUT',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': 'application/json'
-      }
+      headers: this._headers
     })
       .then(res => {
         if (res.ok) {
@@ -128,10 +111,7 @@ export class Api {
   removeLike(cardId) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'DELETE',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': 'application/json'
-      }
+      headers: this._headers
     })
       .then(res => {
         if (res.ok) {
