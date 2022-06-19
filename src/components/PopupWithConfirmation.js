@@ -5,15 +5,17 @@ export class PopupWithConfirmation extends Popup {
     super(popupSelector);
   }
 
-  getCardIdForDelete(cardId, deleteCard) {
+  setEventListeners() {
     super.setEventListeners();
     this._popup.addEventListener('submit', (evt) => {
-      this.deleteCard = deleteCard;
       evt.preventDefault();
-      this.deleteCard(cardId);
-      this.closePopup();
+      this.deleteCard();
     });
   }
+
+  getCardIdForDelete(deleteCard) {
+    this.deleteCard = deleteCard;
+  };
 
   closePopup() {
     super.closePopup();

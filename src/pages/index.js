@@ -91,16 +91,18 @@ function createCard(item, info) {
     popupWithImage.openPopup(name, link);
   }, (cardId) => {
     popupWithConfirmation.openPopup();
-    popupWithConfirmation.getCardIdForDelete(cardId, () => {
+    popupWithConfirmation.getCardIdForDelete(() => {
       api.deleteCard(cardId)
         .then(() => {
           card.removeCard(cardId);
+          popupWithConfirmation.closePopup();
         })
         .catch((err) => {
           console.log('popupWithFormDeleteCard:', err);
         })
     });
   }, info, (cardId, likes, userId) => {
+
     const allLikes = [];
     likes.forEach(like => {
       allLikes.push(like._id);
@@ -110,7 +112,8 @@ function createCard(item, info) {
       api.removeLike(cardId)
         .then((res) => {
           card.setNumberOfLikes(res.likes.length);
-          card.removeLikeCard();
+          card.likesCards();
+          // card.removeLikeCard();
         })
         .catch((err) => {
           console.log('addLikeCard:', err);
@@ -120,7 +123,8 @@ function createCard(item, info) {
         .then((res) => {
           console.log(res);
           card.setNumberOfLikes(res.likes.length);
-          card.addLikeCard();
+          card.likesCards();
+          // card.addLikeCard();
         })
         .catch((err) => {
           console.log('addLikeCard:', err);
