@@ -52,8 +52,6 @@ const popupWithFormCard = new PopupWithForm('.popup_new-space', (newCardData) =>
   popupWithFormCard.renderButtonText('Сохранение...');
   api.setInitialCards(newCardData)
     .then((res) => {
-      console.log(res);
-      console.log(userProfile.getUserId());
       section.addtItemNewCard(createCard(res, userProfile.getUserId()));
       popupWithFormCard.closePopup();
     })
@@ -101,8 +99,7 @@ function createCard(item, userId) {
   }, userId, (cardId) => {
     api.addLike(cardId)
       .then((res) => {
-        console.log('addLike:', res);
-        card.setNumberOfLikes(res.likes.length);
+        card.setNumberOfLikes(res.likes);
         card.likesCards(res.likes);
       })
       .catch((err) => {
@@ -111,8 +108,7 @@ function createCard(item, userId) {
   }, (cardId) => {
     api.removeLike(cardId)
       .then((res) => {
-        console.log('removeLike:', res);
-        card.setNumberOfLikes(res.likes.length);
+        card.setNumberOfLikes(res.likes);
         card.likesCards(res.likes);
       })
       .catch((err) => {

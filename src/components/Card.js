@@ -3,7 +3,6 @@ export class Card {
     this._name = item.name;
     this._link = item.link;
     this._id = item._id;
-    this._numberOfLikes = item.likes.length;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._deleteCardHendler = deleteCardHendler;
@@ -42,18 +41,19 @@ export class Card {
     if (this._owner === this._userId) {
       this._delButton.classList.add('element__delete-urn_active');
     }
-    this.likesCards(this._likes);
     this._setEventListeners();
     this._elementImage = this._element.querySelector('.element__image');
     this._elementImage.src = this._link;
     this._elementImage.alt = this._name;
     this._element.querySelector('.element__title').textContent = this._name;
-    this.setNumberOfLikes(this._numberOfLikes);
+    this.setNumberOfLikes(this._likes);
     return this._element;
   }
 
-  setNumberOfLikes(numberOfLikes) {
-    this._element.querySelector('.element__count-likes').textContent = numberOfLikes;
+  setNumberOfLikes(likes) {
+    this._likes = likes;
+    this._element.querySelector('.element__count-likes').textContent = likes.length;
+    this.likesCards(likes)
   }
 
   removeCard() {
@@ -67,7 +67,7 @@ export class Card {
   removeLikeCard() {
     this._likeButton.classList.remove('element__like_active');
   }
-  // all likes for start to get color
+
   likesCards(likes) {
     likes.forEach(like => {
       if (like._id === this._userId) {
@@ -78,14 +78,11 @@ export class Card {
     })
   }
 
-  // after click on like button check id user withi id on card to color this
   checkLikeCard() {
     const even = (elem) => elem._id === this._userId;
     if (this._likes.some(even)) {
-      console.log('_removelikeCardHandler');
       this._removelikeCardHandler(this._getId());
     } else {
-      console.log('_addlikeCardHandler');
       this._addlikeCardHandler(this._getId());
     }
   }
