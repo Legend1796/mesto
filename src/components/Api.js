@@ -95,7 +95,6 @@ export class Api {
 
   _getResponseData(res) {
     if (res.ok) {
-      console.log(res.ok);
       return res.json();
     }
     return Promise.reject(`Ошибка: ${res.status}`);

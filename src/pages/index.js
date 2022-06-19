@@ -98,65 +98,77 @@ function createCard(item, userId) {
           console.log('popupWithFormDeleteCard:', err);
         })
     });
-  }, userId, (cardId, likes, userId) => {
+  }, userId, (cardId) => {
+    api.addLike(cardId)
+      .then((res) => {
+        console.log('addLike:', res);
+        card.setNumberOfLikes(res.likes.length);
+        card.likesCards(res.likes);
+        // card.removeLikeCard();
+      })
+      .catch((err) => {
+        console.log('addLikeCard:', err);
+      })
+  }, (cardId) => {
+    api.removeLike(cardId)
+      .then((res) => {
+        console.log('removeLike:', res);
+        card.setNumberOfLikes(res.likes.length);
+        card.likesCards(res.likes);
+        // card.addLikeCard();
+      })
+      .catch((err) => {
+        console.log('addLikeCard:', err);
+      })
+  })
+  // (cardId, isLiked) => {
 
-    const allLikes = [];
-    likes.forEach(like => {
-      allLikes.push(like._id);
-    })
-    const even = (elem) => elem === userId;
-    if (allLikes.some(even)) {
-      api.removeLike(cardId)
-        .then((res) => {
-          card.setNumberOfLikes(res.likes.length);
-          card.likesCards();
-          // card.removeLikeCard();
-        })
-        .catch((err) => {
-          console.log('addLikeCard:', err);
-        })
-    } else {
-      api.addLike(cardId)
-        .then((res) => {
-          console.log(res);
-          card.setNumberOfLikes(res.likes.length);
-          card.likesCards();
-          // card.addLikeCard();
-        })
-        .catch((err) => {
-          console.log('addLikeCard:', err);
-        })
-    }
-  });
+  // const allLikes = [];
+  // likes.forEach(like => {
+  //   allLikes.push(like._id);
+  // })
+  // const even = (elem) => elem === userId;
+  // if (allLikes.some(even)) {
+  // if (isLiked) {
+  // api.removeLike(cardId)
+  //   .then((res) => {
+  //     card.setNumberOfLikes(res.likes.length);
+  //     card.likesCards();
+  //     card.removeLikeCard();
+  //   })
+  //   .catch((err) => {
+  //     console.log('addLikeCard:', err);
+  //   })
+  // } else {
+  // api.addLike(cardId)
+  //   .then((res) => {
+  //     console.log(res);
+  //     card.setNumberOfLikes(res.likes.length);
+  //     card.likesCards();
+  //     card.addLikeCard();
+  //   })
+  //   .catch((err) => {
+  //     console.log('addLikeCard:', err);
+  //   })
+  // }
+  // });
   return card.renderCard();
 }
 
-function getCardsFromServer() {
-  api.getInitialCards()
-    .then((cards) => {
-      section.renderItems(cards);
-    })
-    .catch((err) => {
-      console.log('getCardsFromServer:', err);
-    })
-}
-
-function getUserInfoFromServer() {
-  api.getUserInfo()
-    .then(info => {
-      userProfile.setUserInfo(info);
-      getCardsFromServer();
-    })
-    .catch((err) => {
-      alert(err);
-    })
-}
-getUserInfoFromServer();
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards()])
+  .then(([info, cards]) => {
+    userProfile.setUserInfo(info);
+    section.renderItems(cards);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
 
 document.querySelector('.profile__edit-avatar').addEventListener('click', () => {
   popupWithFormeditAvatar.openPopup();
 })
-
 
 document.querySelector('.profile__edit-btn').addEventListener('click', () => {
   const userData = userProfile.getUserInfo();

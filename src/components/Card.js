@@ -1,5 +1,5 @@
 export class Card {
-  constructor(item, cardSelector, handleCardClick, deleteCardHendler, userId, likeCardHandler) {
+  constructor(item, cardSelector, handleCardClick, deleteCardHendler, userId, addlikeCardHandler, removelikeCardHandler) {
     this._name = item.name;
     this._link = item.link;
     this._id = item._id;
@@ -7,10 +7,11 @@ export class Card {
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._deleteCardHendler = deleteCardHendler;
-    this._likeCardHandler = likeCardHandler;
     this._owner = item.owner._id;
     this._userId = userId;
     this._likes = item.likes;
+    this._addlikeCardHandler = addlikeCardHandler;
+    this._removelikeCardHandler = removelikeCardHandler;
   }
 
   _getId() {
@@ -27,8 +28,7 @@ export class Card {
       this._deleteCardHendler(this._getId());
     });
     this._likeButton.addEventListener('click', () => {
-      console.log(this._userId)
-      this._likeCardHandler(this._getId(), this._likes, this._userId);
+      this.checkLikeCard();
     });
     this._element.querySelector('.element__image-btn').addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
@@ -39,11 +39,10 @@ export class Card {
     this._element = this._getTemplate();
     this._delButton = this._element.querySelector('.element__delete-urn');
     this._likeButton = this._element.querySelector('.element__like');
-    console.log(this._userId);
     if (this._owner === this._userId) {
       this._delButton.classList.add('element__delete-urn_active');
     }
-    this.likesCards();
+    this.likesCards(this._likes);
     this._setEventListeners();
     this._elementImage = this._element.querySelector('.element__image');
     this._elementImage.src = this._link;
@@ -68,10 +67,9 @@ export class Card {
   removeLikeCard() {
     this._likeButton.classList.remove('element__like_active');
   }
-
-  likesCards() {
-    this._likes.forEach(like => {
-      console.log(this._userId);
+  // all likes for start to get color
+  likesCards(likes) {
+    likes.forEach(like => {
       if (like._id === this._userId) {
         this.addLikeCard();
       } else {
@@ -80,4 +78,15 @@ export class Card {
     })
   }
 
+  // after click on like button check id user withi id on card to color this
+  checkLikeCard() {
+    const even = (elem) => elem._id === this._userId;
+    if (this._likes.some(even)) {
+      console.log('_removelikeCardHandler');
+      this._removelikeCardHandler(this._getId());
+    } else {
+      console.log('_addlikeCardHandler');
+      this._addlikeCardHandler(this._getId());
+    }
+  }
 }
