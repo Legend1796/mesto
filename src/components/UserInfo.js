@@ -14,5 +14,12 @@ export class UserInfo {
     this._userName.textContent = userData.name;
     this._userJob.textContent = userData.about;
     this._userAvatar.src = userData.avatar;
+    this._userId = userData._id;
   }
+
+  getUserId() {
+    return this._userId;
+  }
+
+
 }

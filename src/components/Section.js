@@ -8,9 +8,9 @@ export class Section {
     this._container.append(element);
   }
 
-  // addtItemNewCard(element) {
-  //   this._container.prepend(element);
-  // }
+  addtItemNewCard(element) {
+    this._container.prepend(element);
+  }
 
   renderItems(cards, info) {
     cards.forEach((item) => {
