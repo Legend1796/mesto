@@ -104,7 +104,6 @@ function createCard(item, userId) {
         console.log('addLike:', res);
         card.setNumberOfLikes(res.likes.length);
         card.likesCards(res.likes);
-        // card.removeLikeCard();
       })
       .catch((err) => {
         console.log('addLikeCard:', err);
@@ -115,43 +114,11 @@ function createCard(item, userId) {
         console.log('removeLike:', res);
         card.setNumberOfLikes(res.likes.length);
         card.likesCards(res.likes);
-        // card.addLikeCard();
       })
       .catch((err) => {
         console.log('addLikeCard:', err);
       })
   })
-  // (cardId, isLiked) => {
-
-  // const allLikes = [];
-  // likes.forEach(like => {
-  //   allLikes.push(like._id);
-  // })
-  // const even = (elem) => elem === userId;
-  // if (allLikes.some(even)) {
-  // if (isLiked) {
-  // api.removeLike(cardId)
-  //   .then((res) => {
-  //     card.setNumberOfLikes(res.likes.length);
-  //     card.likesCards();
-  //     card.removeLikeCard();
-  //   })
-  //   .catch((err) => {
-  //     console.log('addLikeCard:', err);
-  //   })
-  // } else {
-  // api.addLike(cardId)
-  //   .then((res) => {
-  //     console.log(res);
-  //     card.setNumberOfLikes(res.likes.length);
-  //     card.likesCards();
-  //     card.addLikeCard();
-  //   })
-  //   .catch((err) => {
-  //     console.log('addLikeCard:', err);
-  //   })
-  // }
-  // });
   return card.renderCard();
 }
 
