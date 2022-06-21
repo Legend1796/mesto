@@ -53,7 +53,7 @@ export class Card {
   setNumberOfLikes(likes) {
     this._likes = likes;
     this._element.querySelector('.element__count-likes').textContent = likes.length;
-    this.likesCards(likes)
+    this.likesCards(likes);
   }
 
   removeCard() {
@@ -68,14 +68,16 @@ export class Card {
     this._likeButton.classList.remove('element__like_active');
   }
 
-  likesCards(likes) {
-    likes.forEach(like => {
-      if (like._id === this._userId) {
-        this.addLikeCard();
-      } else {
-        this.removeLikeCard();
-      }
-    })
+  isLiked() {
+    return this._likes.some((like) => like._id === this._userId)
+  }
+
+  likesCards() {
+    if (this.isLiked()) {
+      this.addLikeCard();
+    } else {
+      this.removeLikeCard();
+    }
   }
 
   checkLikeCard() {
